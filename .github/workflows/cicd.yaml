@@ -4,7 +4,11 @@ on:
   push: null
   pull_request: null
 
-permissions: { }
+permissions: 
+  contents: read
+  packages: read
+  statuses: write
+  id-token: write
 
 jobs:
   build:
