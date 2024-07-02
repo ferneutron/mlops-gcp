@@ -17,6 +17,12 @@ jobs:
       statuses: write
 
     steps:
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0.4.0'
+        with:
+          workload_identity_provider: 'projects/435551770080/locations/global/workloadIdentityPools/mlops-identity/providers/mlops-provider'
+          service_account: 'workshop@gsd-ai-mx-ferneutron.iam.gserviceaccount.com'
       - name: Checkout code
         uses: actions/checkout@v4
         with:
