@@ -18,22 +18,21 @@ jobs:
       id-token: write
 
     steps:
-      - id: 'auth'
-        name: 'Authenticate to Google Cloud'
+      - name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v0.4.0'
         with:
           workload_identity_provider: 'projects/435551770080/locations/global/workloadIdentityPools/mlops-identity/providers/mlops-provider'
           service_account: 'workshop@gsd-ai-mx-ferneutron.iam.gserviceaccount.com'
 
-      - name: 'test auth'
-        run: |
-          ls -l
-          pwd
-
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: 'Submit cloud build'
+        run: |
+          gcloud builds submit --no-source --timeout=60m \
+          --config cloudbuild.yaml
 
       - name: Super-linter
         uses: super-linter/super-linter@v6.6.0
