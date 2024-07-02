@@ -27,8 +27,8 @@ jobs:
 
       - name: 'test auth'
         run: |
-          gcloud builds submit --no-source --timeout=60m \
-          --config cloudbuild.yaml \
+          ls -l
+          pwd
 
       - name: Checkout code
         uses: actions/checkout@v4
