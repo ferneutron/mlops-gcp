@@ -1,15 +1,15 @@
-import argparse
 import os
 import sys
-from datetime import datetime
-
 import kfp
-from google.cloud import aiplatform
+import argparse
+
+
 from kfp import compiler, dsl
+from google.cloud import aiplatform
+from datetime import datetime
 
 sys.path.append("src/")
 
-from components.evaluators.automl_evaluation import automl_evaluation
 from components.evaluators.custom_evaluation import custom_evaluation
 
 # Evaluation
