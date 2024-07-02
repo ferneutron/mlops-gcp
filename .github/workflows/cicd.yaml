@@ -1,0 +1,33 @@
+name: CICD
+
+on:
+  push: null
+  pull_request: null
+
+permissions: { }
+
+jobs:
+  build:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Super-linter
+        uses: super-linter/super-linter@v6.6.0
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_PYTHON: true
+          VALIDATE_PYTHON_BLACK: true
+          VALIDATE_PYTHON_FLAKE8: true
+          VALIDATE_PYTHON_ISORT: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
