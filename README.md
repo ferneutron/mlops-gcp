@@ -1,3 +1,7 @@
+# MLOps on GCP
+
+Dashboard associated with this repo: [Board](https://github.com/users/ferneutron/projects/1)
+
 ## Contributing to the Project
 
 We welcome contributions from everyone! Here's a guide on how to contribute effectively:
