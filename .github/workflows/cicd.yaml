@@ -33,6 +33,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: 'Set up Cloud SDK'
+        uses: google-github-actions/setup-gcloud@v0
+
       - name: 'Submit cloud build'
         run: |
           gcloud builds submit --no-source --timeout=60m \
