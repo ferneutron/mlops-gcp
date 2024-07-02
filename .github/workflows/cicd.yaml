@@ -24,10 +24,6 @@ jobs:
           workload_identity_provider: 'projects/435551770080/locations/global/workloadIdentityPools/mlops-identity/providers/mlops-provider'
           service_account: 'workshop@gsd-ai-mx-ferneutron.iam.gserviceaccount.com'
 
-        run: |
-          gcloud builds submit --no-source --timeout=60m \
-          --config cloudbuild.yaml
-
       - name: Checkout code
         uses: actions/checkout@v4
         with:
