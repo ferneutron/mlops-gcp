@@ -34,9 +34,6 @@ jobs:
           workload_identity_provider: 'projects/435551770080/locations/global/workloadIdentityPools/mlops-identity/providers/mlops-provide-v2'
           service_account: 'workshop@gsd-ai-mx-ferneutron.iam.gserviceaccount.com'
 
-      #- name: 'Set up Cloud SDK'
-      #  uses: google-github-actions/setup-gcloud@v0
-
       - name: 'Submit cloud build'
         run: |
           gcloud builds submit "projects/gsd-ai-mx-ferneutron/locations/us-central1/connections/githubconnection/gitRepositoryLinks/ferneutron-mlops-gcp" --revision=main
