@@ -1,7 +1,8 @@
 steps:
-- id: "CompilePipeline"
-  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:475.0.0'
-  
+
+- name: 'gcr.io/cloud-builders/git'
+  id: 'Clone Repository'
+
   script: |
     #!/usr/bin/env bash
     pip install --upgrade pip
