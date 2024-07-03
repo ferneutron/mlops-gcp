@@ -1,8 +1,10 @@
 steps:
-
-- name: 'gcr.io/cloud-builders/git'
-  args: ['clone', 'git@github.com:ferneutron/mlops-gcp.git']
-  id: 'Clone Repository'
+# - name: 'gcr.io/cloud-builders/git'
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:475.0.0'
+  script: |
+    #!/usr/bin/env bash
+    ls -l
+    pwd
 
 options:
   automapSubstitutions: true
