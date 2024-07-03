@@ -34,7 +34,7 @@ jobs:
           workload_identity_provider: 'projects/435551770080/locations/global/workloadIdentityPools/mlops-identity/providers/mlops-provide-v2'
           service_account: 'workshop@gsd-ai-mx-ferneutron.iam.gserviceaccount.com'
 
-      - name: 'Submit cloud build'
+      - name: 'Cloud Build'
         run: |
           gcloud builds submit . --config=cloudbuild.yaml
       
