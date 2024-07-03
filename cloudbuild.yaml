@@ -6,7 +6,7 @@ steps:
     #!/usr/bin/env bash
     pip install --upgrade pip
     pip install -r pipelines/requirements.txt
-    ls -l
+    ls -la
 
 options:
   automapSubstitutions: true
