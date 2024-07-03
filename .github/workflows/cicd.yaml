@@ -39,9 +39,7 @@ jobs:
 
       - name: 'Submit cloud build'
         run: |
-          gcloud builds submit --no-source --timeout=60m \
-          --region us-central1 \
-          --config cloudbuild.yaml 
+          gcloud builds submit "https://github.com/ferneutron/mlops-gcp.git" --git-source-revision=develop --config=config.yaml
       
       - name: Super-linter
         uses: super-linter/super-linter@v6.6.0
