@@ -1,10 +1,8 @@
 steps:
 
 - name: 'gcr.io/cloud-builders/git'
+  args: ['clone', 'https://github.com/ferneutron/mlops-gcp.git']
   id: 'Clone Repository'
-
-  run: |
-    git clone https://github.com/ferneutron/mlops-gcp.git
 
 options:
   automapSubstitutions: true
