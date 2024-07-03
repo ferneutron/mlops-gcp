@@ -31,7 +31,7 @@ jobs:
         uses: 'google-github-actions/auth@v0.4.0'
         with:
           project_id: 'gsd-ai-mx-ferneutron'
-          workload_identity_provider: 'projects/435551770080/locations/global/workloadIdentityPools/mlops-identity/providers/mlops-provider'
+          workload_identity_provider: 'projects/435551770080/locations/global/workloadIdentityPools/mlops-identity/providers/mlops-provide-v2'
           service_account: 'workshop@gsd-ai-mx-ferneutron.iam.gserviceaccount.com'
 
       - name: 'Set up Cloud SDK'
