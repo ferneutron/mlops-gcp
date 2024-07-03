@@ -49,7 +49,7 @@ jobs:
       - name: 'Submit cloud build'
         run: |
           gcloud builds submit --no-source --timeout=60m \
-          --config cloudbuild.yaml
+          --config cloudbuild.yaml \
           --substitutions $SUBSTITUTIONS \
           --machine-type=n1-highcpu-8
       
