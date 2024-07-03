@@ -4,24 +4,45 @@ on:
   push: null
   pull_request: null
 
-permissions: { }
+permissions: 
+  contents: read
+  packages: read
+  statuses: write
+  id-token: write
 
 jobs:
   build:
-    name: Lint
+    name: CICD
     runs-on: ubuntu-latest
 
     permissions:
       contents: read
       packages: read
       statuses: write
+      id-token: write
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+        
+      - name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0.4.0'
+        with:
+          project_id: 'gsd-ai-mx-ferneutron'
+          workload_identity_provider: 'projects/435551770080/locations/global/workloadIdentityPools/mlops-identity/providers/mlops-provide-v2'
+          service_account: 'workshop@gsd-ai-mx-ferneutron.iam.gserviceaccount.com'
 
+      - name: 'Set up Cloud SDK'
+        uses: google-github-actions/setup-gcloud@v0
+
+      - name: 'Submit cloud build'
+        run: |
+          gcloud builds submit --no-source --timeout=60m \
+          --region us-central1 \
+          --config cloudbuild.yaml 
+      
       - name: Super-linter
         uses: super-linter/super-linter@v6.6.0
         env:

@@ -1,15 +1,15 @@
-import argparse
 import os
 import sys
-from datetime import datetime
-
 import kfp
-from google.cloud import aiplatform
+import argparse
+
+
 from kfp import compiler, dsl
+from google.cloud import aiplatform
+from datetime import datetime
 
 sys.path.append("src/")
 
-from components.evaluators.automl_evaluation import automl_evaluation
 from components.evaluators.custom_evaluation import custom_evaluation
 
 # Evaluation
@@ -27,6 +27,10 @@ from components.utils.deploy_model import deploy_model
 from components.utils.dumb_deploy_model import dumb_deploy_model
 
 global PIPELINE_NAME
+global MODEL_NAME
+global DATASET_NAME
+global TRAINING_JOB_NAME
+global ENDPOINT_NAME
 
 # Define environment variables to be used for pipeline
 # compilation.
@@ -43,10 +47,7 @@ PIPELINE_STAGING = f"{BUCKET}/{ENVIRONMENT}/{TIMESTAMP}/staging"
 PIPELINE_DESCRIPTION = "A base pipeline for testing purposes"
 
 # Artifacts settings
-MODEL_NAME = f"{PIPELINE_NAME}-model-{TIMESTAMP}"
-DATASET_NAME = f"{PIPELINE_NAME}-dataset-{TIMESTAMP}"
-TRAINING_JOB_NAME = f"{PIPELINE_NAME}-training-job-{TIMESTAMP}"
-ENDPOINT_NAME = f"{PIPELINE_NAME}-endpoint-{TIMESTAMP}"
+
 MACHINE_TYPE = "n1-standard-4"
 BQ_DATASET = "beans"
 BQ_TABLE = "beans1"
@@ -164,5 +165,4 @@ if __name__ == "__main__":
             enable_caching=True,
         )
 
-        # Run!
         job.run()
