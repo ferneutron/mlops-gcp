@@ -3,7 +3,7 @@ steps:
 - name: 'gcr.io/cloud-builders/git'
   id: 'Clone Repository'
 
-  script: |
+  run: |
     git clone https://github.com/ferneutron/mlops-gcp.git
 
 options:
