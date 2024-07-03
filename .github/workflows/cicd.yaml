@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   build:
-    name: Lint
+    name: CICD
     runs-on: ubuntu-latest
 
     permissions:

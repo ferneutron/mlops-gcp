@@ -10,5 +10,3 @@ steps:
 options:
   automapSubstitutions: true
   logging: CLOUD_LOGGING_ONLY
-substitutions:
-  _USER: "Google Cloud"
