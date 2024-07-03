@@ -39,7 +39,7 @@ jobs:
 
       - name: 'Submit cloud build'
         run: |
-          gcloud builds submit "https://github.com/ferneutron/mlops-gcp.git" --git-source-revision=develop --config=config.yaml
+          gcloud builds submit "https://github.com/ferneutron/mlops-gcp.git" --git-source-revision=develop --config=cloudbuild.yaml
       
       - name: Super-linter
         uses: super-linter/super-linter@v6.6.0
