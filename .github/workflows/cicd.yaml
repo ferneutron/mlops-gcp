@@ -39,7 +39,7 @@ jobs:
 
       - name: 'Submit cloud build'
         run: |
-          gcloud builds submit "projects/gsd-ai-mx-ferneutron/locations/global/connections/githubconnection/gitRepositoryLinks/ferneutron-mlops-gcp" --revision=main --service-account=workshop@gsd-ai-mx-ferneutron.iam.gserviceaccount.com
+          gcloud builds submit "projects/gsd-ai-mx-ferneutron/locations/global/connections/githubconnection/gitRepositoryLinks/ferneutron-mlops-gcp" --revision=main --service-account="workshop@gsd-ai-mx-ferneutron.iam.gserviceaccount.com"
       
       - name: Super-linter
         uses: super-linter/super-linter@v6.6.0
