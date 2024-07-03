@@ -4,15 +4,6 @@ on:
   push: null
   pull_request: null
 
-env:
-  SUBSTITUTIONS: "
-   _PROJECT=gsd-ai-mx-ferneutron,\
-   _REGION=us-central1,\
-   _REPO_URL=https://github.com/ferneutron/mlops-gcp\
-   _BRANCH=main,\
-   _PIPELINE_NAME=tfx-pipeline
-  "
-
 permissions: 
   contents: read
   packages: read
@@ -49,9 +40,8 @@ jobs:
       - name: 'Submit cloud build'
         run: |
           gcloud builds submit --no-source --timeout=60m \
-          --config cloudbuild.yaml \
-          --substitutions $SUBSTITUTIONS \
-          --machine-type=n1-highcpu-8
+          --region us-central1 \
+          --config cloudbuild.yaml 
       
       - name: Super-linter
         uses: super-linter/super-linter@v6.6.0

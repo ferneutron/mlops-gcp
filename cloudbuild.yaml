@@ -1,44 +1,12 @@
 steps:
 - id: "CompilePipeline"
   name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:475.0.0'
-  env:
-    - PROJECT_ID=${_PROJECT_ID}
-    - LOCATION=${_LOCATION}
-    - BUCKET=${_BUCKET}
-    - ENVIRONMENT=${_ENVIRONMENT}
+  
   script: |
     #!/usr/bin/env bash
     pip install --upgrade pip
-    pip install -r requirements.txt
-    python3 -B src/pipelines/beans_pipeline.py --compile --out thesuperbeans.yaml
+    pip install -r pipelines/requirements.txt
 
-- id: "RegisterPipeline"
-  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:475.0.0'
-  env:
-    - PROJECT_ID=${_PROJECT_ID}
-    - LOCATION=${_LOCATION}
-    - BUCKET=${_BUCKET}
-    - ENVIRONMENT=${_ENVIRONMENT}
-  script: |
-    #!/usr/bin/env bash
-    curl -X POST \
-      -H "Authorization: Bearer $(gcloud auth print-access-token)" \
-      -F tags=v1,latest,${ENVIRONMENT} \
-      -F content=@/workspace/thesuperbeans.yaml \
-    https://us-central1-kfp.pkg.dev/gsd-ai-mx-ferneutron/mlops
-
-- id: "RunPipeline"
-  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:475.0.0'
-  env:
-    - PROJECT_ID=${_PROJECT_ID}
-    - LOCATION=${_LOCATION}
-    - BUCKET=${_BUCKET}
-    - ENVIRONMENT=${_ENVIRONMENT}
-  script: |
-    #!/usr/bin/env bash
-    pip install --upgrade pip
-    pip install -r requirements.txt
-    python3 -B src/pipelines/beans_pipeline.py --run --out thesuperbeans.yaml
 options:
   automapSubstitutions: true
   logging: CLOUD_LOGGING_ONLY
