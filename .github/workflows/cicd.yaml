@@ -1,5 +1,3 @@
-name: CICD
-
 on:
   push: [ main ]
 
@@ -32,6 +30,7 @@ jobs:
   cd:
     needs: [ci]
     name: Deployment
+    steps:
       - name: 'GCP Auth'
         uses: 'google-github-actions/auth@v0.4.0'
         with:
