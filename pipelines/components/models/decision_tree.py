@@ -16,8 +16,6 @@ from kfp.dsl import Output
     ],
 )
 def decision_tree(
-    project_id: str,
-    location: str,
     train_dataset: Input[Dataset],
     metrics: Output[Metrics],
     output_model: Output[Model],
