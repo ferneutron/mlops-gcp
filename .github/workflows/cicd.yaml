@@ -33,6 +33,7 @@ jobs:
   cd:
     needs: [ci]
     name: Deployment
+    runs-on: ubuntu-latest
     steps:
       - name: 'GCP Auth'
         uses: 'google-github-actions/auth@v0.4.0'
