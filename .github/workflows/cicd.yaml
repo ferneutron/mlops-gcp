@@ -1,5 +1,8 @@
+name: CICD
+
 on:
-  push: [ main ]
+  push: 
+    branches: [ main ]
 
 permissions: 
   contents: read
