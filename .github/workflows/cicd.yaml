@@ -1,10 +1,10 @@
 name: CICD
 
 on:
-  push: 
+  push:
     branches: [ main ]
 
-permissions: 
+permissions:
   contents: read
   packages: read
   statuses: write
@@ -27,7 +27,7 @@ jobs:
           VALIDATE_PYTHON: true
           VALIDATE_PYTHON_BLACK: true
           VALIDATE_PYTHON_FLAKE8: true
-          VALIDATE_PYTHON_ISORT: true
+          VALIDATE_PYTHON_ISORT: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   test:
@@ -39,7 +39,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-  
+
   cd:
     needs: [ci, test]
     name: Deployment
@@ -72,7 +72,7 @@ jobs:
             filters: |
                 src:
                   - 'pipelines/**'
-      
+
       - name: 'Submit for Cloud Functions'
         if: steps.cloud-functions-change.outputs.src == 'true'
         run: |

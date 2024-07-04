@@ -11,22 +11,21 @@ from kfp.dsl import Output
 @component(
     base_image='gcr.io/deeplearning-platform-release/tf2-cpu.2-6:latest',
     packages_to_install=[
+        'xgboost==1.6.2',
         'pandas==1.3.5',
         'joblib==1.1.0',
     ],
 )
-def decision_tree(
-    project_id: str,
-    location: str,
+def xgboost(
     train_dataset: Input[Dataset],
     metrics: Output[Metrics],
     output_model: Output[Model],
 ):
     import joblib
     import pandas as pd
+    from xgboost import XGBClassifier
     from sklearn.metrics import accuracy_score, roc_auc_score
     from sklearn.model_selection import train_test_split
-    from sklearn.tree import DecisionTreeClassifier
 
     train = pd.read_csv(train_dataset.path)
 
@@ -37,7 +36,7 @@ def decision_tree(
         random_state=42,
     )
 
-    model = DecisionTreeClassifier()
+    model = XGBClassifier()
     model.fit(X_train, y_train)
 
     pred = model.predict(X_test)

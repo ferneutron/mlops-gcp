@@ -1,4 +1,7 @@
+from __future__ import annotations
+
 import functions_framework
+
 
 @functions_framework.http
 def hello_http(request):
@@ -20,4 +23,4 @@ def hello_http(request):
         name = request_args['name']
     else:
         name = 'World'
-    return 'Hello {}!'.format(name)
+    return f'Hello {name}!'

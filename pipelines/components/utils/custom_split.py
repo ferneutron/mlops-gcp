@@ -1,16 +1,20 @@
-import kfp
-from kfp import compiler, dsl
-from kfp.dsl import Artifact, Dataset, Input, Metrics, Model, Output, component
+from __future__ import annotations
+
+from kfp.dsl import Artifact
+from kfp.dsl import component
+from kfp.dsl import Dataset
+from kfp.dsl import Input
+from kfp.dsl import Output
 
 
 @component(
-    base_image="gcr.io/deeplearning-platform-release/tf2-cpu.2-6:latest",
+    base_image='gcr.io/deeplearning-platform-release/tf2-cpu.2-6:latest',
     packages_to_install=[
-        "xgboost==1.6.2",
-        "pandas==1.3.5",
-        "joblib==1.1.0",
-        "google-cloud-aiplatform",
-        "google-cloud-bigquery",
+        'xgboost==1.6.2',
+        'pandas==1.3.5',
+        'joblib==1.1.0',
+        'google-cloud-aiplatform',
+        'google-cloud-bigquery',
     ],
 )
 def split_data(
@@ -20,21 +24,20 @@ def split_data(
     train_dataset: Output[Dataset],
     test_dataset: Output[Dataset],
 ):
-    import os
-
-    import joblib
     import pandas as pd
     from google.cloud import aiplatform, bigquery
     from sklearn.model_selection import train_test_split
 
     aiplatform.init(project=project_id, location=location)
 
-    data = aiplatform.TabularDataset(dataset_name=dataset.metadata["resourceName"])
+    data = aiplatform.TabularDataset(
+        dataset_name=dataset.metadata['resourceName'],
+    )
     data = data.to_dict()
 
-    uri = data["metadata"]["inputConfig"]["bigquerySource"]["uri"]
-    dataset_id = uri.split(f"bq://{project_id}.")[-1].split(".")[0]
-    table_id = uri.split(f"bq://{project_id}.")[-1].split(".")[1]
+    uri = data['metadata']['inputConfig']['bigquerySource']['uri']
+    dataset_id = uri.split(f'bq://{project_id}.')[-1].split('.')[0]
+    table_id = uri.split(f'bq://{project_id}.')[-1].split('.')[1]
 
     client = bigquery.Client()
 
@@ -50,27 +53,27 @@ def split_data(
     df = pd.concat(dfs, ignore_index=True)
     del dfs
 
-    df["Class"].replace(
+    df['Class'].replace(
         {
-            "DERMASON": 0,
-            "SIRA": 1,
-            "SEKER": 2,
-            "HOROZ": 3,
-            "CALI": 4,
-            "BARBUNYA": 5,
-            "BOMBAY": 6,
+            'DERMASON': 0,
+            'SIRA': 1,
+            'SEKER': 2,
+            'HOROZ': 3,
+            'CALI': 4,
+            'BARBUNYA': 5,
+            'BOMBAY': 6,
         },
         inplace=True,
     )
 
     X_train, X_test, y_train, y_test = train_test_split(
-        df.drop("Class", axis=1), df["Class"], test_size=0.2, random_state=42
+        df.drop('Class', axis=1), df['Class'], test_size=0.2, random_state=42,
     )
 
-    X_train["Class"] = y_train
-    X_test["Class"] = y_test
+    X_train['Class'] = y_train
+    X_test['Class'] = y_test
 
-    X_train.to_csv(f"{train_dataset.path}", index=False)
-    X_test.to_csv(f"{test_dataset.path}", index=False)
+    X_train.to_csv(f'{train_dataset.path}', index=False)
+    X_test.to_csv(f'{test_dataset.path}', index=False)
 
-    print(f"Path: {train_dataset}")
+    print(f'Path: {train_dataset}')
