@@ -1,8 +1,7 @@
 name: CICD
 
 on:
-  push: main
-  pull_request: main
+  push: [ main ]
 
 permissions: 
   contents: read
