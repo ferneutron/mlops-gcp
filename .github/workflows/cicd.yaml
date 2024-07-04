@@ -1,8 +1,8 @@
 name: CICD
 
 on:
-  push: null
-  pull_request: null
+  push: main
+  pull_request: main
 
 permissions: 
   contents: read
@@ -11,33 +11,15 @@ permissions:
   id-token: write
 
 jobs:
-  build:
-    name: CICD
+  ci:
+    name: Check code quality
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      packages: read
-      statuses: write
-      id-token: write
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-        
-      - name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v0.4.0'
-        with:
-          project_id: 'gsd-ai-mx-ferneutron'
-          workload_identity_provider: 'projects/435551770080/locations/global/workloadIdentityPools/mlops-identity/providers/mlops-provide-v2'
-          service_account: 'workshop@gsd-ai-mx-ferneutron.iam.gserviceaccount.com'
 
-      - name: 'Cloud Build'
-        run: |
-          gcloud builds submit . --config=cloudbuild.yaml
-      
       - name: Super-linter
         uses: super-linter/super-linter@v6.6.0
         env:
@@ -47,3 +29,17 @@ jobs:
           VALIDATE_PYTHON_FLAKE8: true
           VALIDATE_PYTHON_ISORT: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+  cd:
+    needs: [ci]
+    name: Deployment
+      - name: 'GCP Auth'
+        uses: 'google-github-actions/auth@v0.4.0'
+        with:
+          project_id: 'gsd-ai-mx-ferneutron'
+          workload_identity_provider: 'projects/435551770080/locations/global/workloadIdentityPools/mlops-identity/providers/mlops-provide-v2'
+          service_account: 'workshop@gsd-ai-mx-ferneutron.iam.gserviceaccount.com'
+
+      - name: 'Cloud Build'
+        run: |
+          gcloud builds submit . --config=cloudbuild.yaml
