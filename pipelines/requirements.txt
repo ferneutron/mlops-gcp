@@ -3,3 +3,4 @@ google-cloud-pipeline-components
 google-cloud-storage
 kfp
 pandas
+requests
