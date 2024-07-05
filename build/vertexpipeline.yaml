@@ -1,8 +1,17 @@
 steps:
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:475.0.0'
+- id: "CompilePipeline"
+  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:475.0.0'
   script: |
     #!/usr/bin/env bash
-    echo "Vertex Pipeline"
+    pip install --upgrade pip
+    pip install -r pipelines/requirements.txt
+    python3 -B pipelines/pipelines/beans_pipeline.py --compile
+
+- id: "VerifyPipeline"
+  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:475.0.0'
+  script: |
+    #!/usr/bin/env bash
+    ls -l /workspace
 
 options:
   automapSubstitutions: true
