@@ -5,12 +5,9 @@ import sys
 from datetime import datetime
 
 import kfp
-from components.evaluators.dumb_eval import dumb_eval
-from components.models.logistic_regression import logistic_regression
-from components.utils.custom_split import split_data
-from components.utils.dumb_deploy_model import dumb_deploy_model
 from kfp import compiler
 from kfp.registry import RegistryClient
+
 sys.path.append("pipelines/")
 
 
@@ -87,6 +84,11 @@ def init_parser():
 
 
 if __name__ == "__main__":
+    from components.evaluators.dumb_eval import dumb_eval
+    from components.models.logistic_regression import logistic_regression
+    from components.utils.custom_split import split_data
+    from components.utils.dumb_deploy_model import dumb_deploy_model
+
     args = init_parser()
 
     if args.compile:
