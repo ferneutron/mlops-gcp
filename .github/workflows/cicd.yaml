@@ -74,9 +74,11 @@ jobs:
       - name: 'Submit for Cloud Functions'
         if: steps.cloud-functions-change.outputs.src == 'true'
         run: |
+          ls -l
           gcloud builds submit . --config=build/cloudfunction.yaml
 
       - name: 'Submit for Vertex Pipeline'
         if: steps.vertex-pipeline-change.outputs.src == 'true'
         run: |
+          ls -l
           gcloud builds submit . --config=build/vertexpipeline.yaml
