@@ -79,4 +79,4 @@ jobs:
       - name: 'Submit for Vertex Pipeline'
         if: steps.vertex-pipeline-change.outputs.src == 'true'
         run: |
-          gcloud builds submit . --config=vertexpipeline.yaml
+          gcloud builds submit . --config=build/vertexpipeline.yaml
