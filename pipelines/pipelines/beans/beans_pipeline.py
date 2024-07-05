@@ -103,6 +103,6 @@ if __name__ == "__main__":
             file_name="/workspace/pipeline.yaml",
             tags=["latest"],
             extra_headers={
-                "description": "This is an example pipeline template.",
+                "description": "This is an example pipeline",
             },
         )
