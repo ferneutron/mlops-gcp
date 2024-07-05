@@ -27,7 +27,9 @@ def deploy_model(
     )
 
     endpoint = aiplatform.Endpoint.create(
-        display_name="BeansEndpointv1", project=project_id, location=location,
+        display_name="BeansEndpointv1",
+        project=project_id,
+        location=location,
     )
 
     uploaded_model.deploy(

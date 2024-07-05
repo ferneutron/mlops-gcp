@@ -9,11 +9,11 @@ from kfp.dsl import Output
 
 
 @component(
-    base_image='gcr.io/deeplearning-platform-release/tf2-cpu.2-6:latest',
+    base_image="gcr.io/deeplearning-platform-release/tf2-cpu.2-6:latest",
     packages_to_install=[
-        'xgboost==1.6.2',
-        'pandas==1.3.5',
-        'joblib==1.1.0',
+        "xgboost==1.6.2",
+        "pandas==1.3.5",
+        "joblib==1.1.0",
     ],
 )
 def custom_evaluation(
@@ -33,19 +33,19 @@ def custom_evaluation(
     test = pd.read_csv(test_dataset.path)
 
     models = {
-        'logistic_regression': logistic_trained_model.path,
-        'xgboost': xgboost_trained_model.path,
-        'random_forest': random_forest_trained_model.path,
-        'decision_tree': decision_tree_trained_model.path,
+        "logistic_regression": logistic_trained_model.path,
+        "xgboost": xgboost_trained_model.path,
+        "random_forest": random_forest_trained_model.path,
+        "decision_tree": decision_tree_trained_model.path,
     }
 
-    best_model_name, best_auc_roc = '', 0.0
+    best_model_name, best_auc_roc = "", 0.0
     for model_name, model_path in models.items():
         model = joblib.load(model_path)
-        y_pred = model.predict_proba(test.drop('Class', axis=1))
-        auc_roc = roc_auc_score(test['Class'], y_pred, multi_class='ovr')
+        y_pred = model.predict_proba(test.drop("Class", axis=1))
+        auc_roc = roc_auc_score(test["Class"], y_pred, multi_class="ovr")
 
-        metrics.log_metric(f'{model_name} (AUC ROC)', (auc_roc))
+        metrics.log_metric(f"{model_name} (AUC ROC)", (auc_roc))
 
         if auc_roc > best_auc_roc:
             best_auc_roc = auc_roc
@@ -53,5 +53,5 @@ def custom_evaluation(
 
     output_model.path = models[best_model_name]
 
-    metrics.log_metric('best_model_name', (best_model_name))
-    metrics.log_metric('best_auc_roc', (best_auc_roc))
+    metrics.log_metric("best_model_name", (best_model_name))
+    metrics.log_metric("best_auc_roc", (best_auc_roc))

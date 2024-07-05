@@ -42,7 +42,9 @@ def random_forest(
 
     acc = accuracy_score(y_test, pred)
     aucRoc = roc_auc_score(
-        y_test, model.predict_proba(X_test), multi_class="ovr",
+        y_test,
+        model.predict_proba(X_test),
+        multi_class="ovr",
     )
 
     metrics.log_metric("accuracy", (acc))

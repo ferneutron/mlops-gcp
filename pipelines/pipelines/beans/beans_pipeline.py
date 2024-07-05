@@ -99,7 +99,8 @@ def init_parser():
     )
 
     parser.add_argument(
-        "--run", action="store_true",
+        "--run",
+        action="store_true",
         help="Run the Python code.",
     )
 
@@ -114,7 +115,8 @@ if __name__ == "__main__":
 
     if args.compile:
         compiler.Compiler().compile(
-            pipeline_func=pipeline, package_path=f"/workspace/{OUTPUT_FILE}",
+            pipeline_func=pipeline,
+            package_path=f"/workspace/{OUTPUT_FILE}",
         )
 
     elif args.run:
