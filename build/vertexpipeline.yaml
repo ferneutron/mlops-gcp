@@ -5,7 +5,8 @@ steps:
     #!/usr/bin/env bash
     pip install --upgrade pip
     pip install -r pipelines/requirements.txt
-    python3 -B pipelines/pipelines/beans_pipeline.py --compile
+    ls -l
+    python3 -B pipelines/pipelines/beans/beans_pipeline.py --compile
 
 - id: "VerifyPipeline"
   name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:475.0.0'
