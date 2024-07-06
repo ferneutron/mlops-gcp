@@ -1,6 +1,6 @@
 from __future__ import annotations
-from components.utils.custom_split import split_data
 from components.models.logistic_regression import logistic_regression
+from components.utils.custom_split import split_data
 
 import argparse
 import logging
@@ -14,11 +14,8 @@ from kfp.registry import RegistryClient
 sys.path.append("vertex-pipelines/")
 
 
-# Basic Configuration
 logging.basicConfig(
-    # Set logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
     level=logging.DEBUG,
-    # Customize log format
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 
