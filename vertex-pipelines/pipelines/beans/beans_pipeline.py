@@ -1,6 +1,5 @@
 from __future__ import annotations
-from components.models.logistic_regression import logistic_regression
-from components.utils.custom_split import split_data
+
 
 import argparse
 import logging
@@ -13,6 +12,8 @@ from kfp.registry import RegistryClient
 
 sys.path.append("vertex-pipelines/")
 
+from components.models.logistic_regression import logistic_regression
+from components.utils.custom_split import split_data
 
 logging.basicConfig(
     level=logging.DEBUG,
