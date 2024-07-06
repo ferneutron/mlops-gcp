@@ -1,4 +1,6 @@
 from __future__ import annotations
+from components.utils.custom_split import split_data
+from components.models.logistic_regression import logistic_regression
 
 import argparse
 import logging
@@ -6,10 +8,11 @@ import sys
 from datetime import datetime
 
 import kfp
-from components.models.logistic_regression import logistic_regression
-from components.utils.custom_split import split_data
 from kfp import compiler
 from kfp.registry import RegistryClient
+
+sys.path.append("vertex-pipelines/")
+
 
 # Basic Configuration
 logging.basicConfig(
@@ -21,8 +24,6 @@ logging.basicConfig(
 
 # Create a logger (optional but recommended)
 logger = logging.getLogger(__name__)
-
-sys.path.append("vertex-pipelines/")
 
 TIMESTAMP = datetime.now().strftime("%Y%m%d%H%M%S")
 
