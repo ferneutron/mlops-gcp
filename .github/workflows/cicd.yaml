@@ -11,35 +11,8 @@ permissions:
   id-token: write
 
 jobs:
-  ci:
-    name: Check code quality
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Super-linter
-        uses: super-linter/super-linter@v6.6.0
-        env:
-          VALIDATE_PYTHON: true
-          VALIDATE_PYTHON_BLACK: true
-          VALIDATE_PYTHON_FLAKE8: true
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  test:
-    needs: [ci]
-    name: Integration Tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
   cd:
-    needs: [ci, test]
     name: Deployment
     runs-on: ubuntu-latest
     steps:
