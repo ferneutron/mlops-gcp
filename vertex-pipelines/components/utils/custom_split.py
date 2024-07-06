@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from kfp.dsl import Artifact
 from kfp.dsl import component
 from kfp.dsl import Dataset
