@@ -11,9 +11,9 @@ from kfp import compiler
 from kfp.registry import RegistryClient
 
 sys.path.append("vertex-pipelines/")
-
-from components.models.logistic_regression import logistic_regression
 from components.utils.custom_split import split_data
+from components.models.logistic_regression import logistic_regression
+
 
 logging.basicConfig(
     level=logging.DEBUG,
