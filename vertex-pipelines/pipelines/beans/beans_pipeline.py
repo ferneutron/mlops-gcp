@@ -26,8 +26,8 @@ def pipeline(
     location: str,
 ):
     import google_cloud_pipeline_components.v1.dataset as DataSet
-    from components.models.logistic_regression import logistic_regression
     from components.utils.custom_split import split_data
+    from components.models.logistic_regression import logistic_regression
 
     TabularDatasetCreateOp = DataSet.create_tabular_dataset.component
 
