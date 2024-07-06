@@ -6,6 +6,8 @@ import sys
 from datetime import datetime
 
 import kfp
+from components.models.logistic_regression import logistic_regression
+from components.utils.custom_split import split_data
 from kfp import compiler
 from kfp.registry import RegistryClient
 
@@ -38,8 +40,6 @@ def pipeline(
     location: str,
 ):
     import google_cloud_pipeline_components.v1.dataset as DataSet
-    from components.utils.custom_split import split_data
-    from components.models.logistic_regression import logistic_regression
 
     TabularDatasetCreateOp = DataSet.create_tabular_dataset.component
 
