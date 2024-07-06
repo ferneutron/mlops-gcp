@@ -1,12 +1,24 @@
 from __future__ import annotations
 
 import argparse
+import logging
 import sys
 from datetime import datetime
 
 import kfp
 from kfp import compiler
 from kfp.registry import RegistryClient
+
+# Basic Configuration
+logging.basicConfig(
+    # Set logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+    level=logging.DEBUG,
+    # Customize log format
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+)
+
+# Create a logger (optional but recommended)
+logger = logging.getLogger(__name__)
 
 sys.path.append("vertex-pipelines/")
 
@@ -76,6 +88,7 @@ if __name__ == "__main__":
     args = init_parser()
 
     if args.compile:
+
         compiler.Compiler().compile(
             pipeline_func=pipeline,
             package_path="/workspace/pipeline.yaml",
