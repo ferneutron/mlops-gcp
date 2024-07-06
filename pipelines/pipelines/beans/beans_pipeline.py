@@ -5,10 +5,10 @@ import sys
 from datetime import datetime
 
 import kfp
+from components.models.logistic_regression import logistic_regression
+from components.utils.custom_split import split_data
 from kfp import compiler
 from kfp.registry import RegistryClient
-
-sys.path.append("pipelines/")
 
 
 TIMESTAMP = datetime.now().strftime("%Y%m%d%H%M%S")
@@ -43,23 +43,10 @@ def pipeline(
         dataset=dataset_create_op.outputs["dataset"],
     )
 
-    logistic_training_op = logistic_regression(
+    logistic_regression(
         project_id=project_id,
         location=location,
         train_dataset=data.outputs["train_dataset"],
-    )
-
-    dumb_eval_op = dumb_eval(
-        project_id=project_id,
-        location=location,
-        test_dataset=data.outputs["test_dataset"],
-        logistic_trained_model=logistic_training_op.outputs["output_model"],
-    )
-
-    dumb_deploy_model(
-        project_id=project_id,
-        location=location,
-        model=dumb_eval_op.outputs["output_model"],
     )
 
 
@@ -84,10 +71,7 @@ def init_parser():
 
 
 if __name__ == "__main__":
-    from components.evaluators.dumb_eval import dumb_eval
-    from components.models.logistic_regression import logistic_regression
-    from components.utils.custom_split import split_data
-    from components.utils.dumb_deploy_model import dumb_deploy_model
+    sys.path.append("pipelines/")
 
     args = init_parser()
 
