@@ -65,7 +65,7 @@ def init_parser():
     parser.add_argument(
         "--register",
         action="store_true",
-        help="Register pipeline to Artifact Registry.",
+        help="Register pipeline to Artifact Registry",
     )
 
     return parser.parse_args()
