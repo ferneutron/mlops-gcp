@@ -42,7 +42,7 @@ jobs:
         with:
             filters: |
                 src:
-                  - 'pipelines/**'
+                  - 'vertex-pipelines/**'
 
       - name: 'Submit for Cloud Functions'
         if: steps.cloud-functions-change.outputs.src == 'true'
