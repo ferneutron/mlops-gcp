@@ -20,7 +20,7 @@ PIPELINE_NAME = f"beans-{ENVIRONMENT}-{TIMESTAMP}"
 PIPELINE_ROOT = f"{BUCKET}/{ENVIRONMENT}/{TIMESTAMP}/pipeline_root"
 
 
-@kfp.dsl.pipeline(PIPELINE_NAME, pipeline_root=PIPELINE_ROOT)
+@kfp.dsl.pipeline(name=PIPELINE_NAME, pipeline_root=PIPELINE_ROOT)
 def pipeline(
     bq_source: str,
     project_id: str,
