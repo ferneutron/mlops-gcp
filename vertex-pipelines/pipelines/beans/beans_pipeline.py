@@ -8,9 +8,7 @@ import kfp
 from kfp import compiler
 from kfp.registry import RegistryClient
 
-from pipelines.components.models.logistic_regression import logistic_regression
-from pipelines.components.utils.custom_split import split_data
-
+sys.path.append("vertex-pipelines/")
 
 TIMESTAMP = datetime.now().strftime("%Y%m%d%H%M%S")
 
@@ -28,6 +26,8 @@ def pipeline(
     location: str,
 ):
     import google_cloud_pipeline_components.v1.dataset as DataSet
+    from components.models.logistic_regression import logistic_regression
+    from components.utils.custom_split import split_data
 
     TabularDatasetCreateOp = DataSet.create_tabular_dataset.component
 
@@ -72,7 +72,6 @@ def init_parser():
 
 
 if __name__ == "__main__":
-    sys.path.append("pipelines/")
 
     args = init_parser()
 
