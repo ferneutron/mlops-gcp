@@ -56,8 +56,6 @@ def pipeline(
     )
 
     logistic_regression(
-        project_id=project_id,
-        location=location,
         train_dataset=data.outputs["train_dataset"],
     )
 
