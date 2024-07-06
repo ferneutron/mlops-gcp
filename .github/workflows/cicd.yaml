@@ -56,5 +56,5 @@ jobs:
           ls -l
           pip install --upgrade pip
           pip install -r pipelines/requirements.txt
-          python3 -B pipelines/pipelines/beans/beans_pipeline.py --compile
+          python3 -B vertex-pipelines/pipelines/beans/beans_pipeline.py --compile
           gcloud builds submit . --config=build/vertexpipeline.yaml
