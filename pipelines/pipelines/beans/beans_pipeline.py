@@ -5,10 +5,11 @@ import sys
 from datetime import datetime
 
 import kfp
-from components.models.logistic_regression import logistic_regression
-from components.utils.custom_split import split_data
 from kfp import compiler
 from kfp.registry import RegistryClient
+
+from pipelines.components.models.logistic_regression import logistic_regression
+from pipelines.components.utils.custom_split import split_data
 
 
 TIMESTAMP = datetime.now().strftime("%Y%m%d%H%M%S")
