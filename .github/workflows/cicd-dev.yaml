@@ -45,8 +45,8 @@ jobs:
         id: vertex-pipeline
         with:
             list-files: shell
-            backend:
-              - 'vertex-pipelines/pipelines/beans/**'
+            python:
+              - 'vertex-pipelines/**'
               - '!**/*.py'
 
       - name: Show modified
