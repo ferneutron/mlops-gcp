@@ -1,4 +1,5 @@
 import sys
+import os
 import argparse
 from datetime import datetime
 
@@ -13,6 +14,9 @@ ENVIRONMENT = "dev"
 PIPELINE_REPO = "https://us-central1-kfp.pkg.dev/gsd-ai-mx-ferneutron/mlops"
 PIPELINE_NAME = f"beans-{ENVIRONMENT}-{TIMESTAMP}"
 PIPELINE_ROOT = f"{BUCKET}/{ENVIRONMENT}/{TIMESTAMP}/pipeline_root"
+
+MYENV = os.getenv("MYENV")
+print(f"Content of MYENV: {MYENV}")
 
 sys.path.append("vertex-pipelines/")
 
