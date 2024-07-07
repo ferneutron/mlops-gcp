@@ -1,4 +1,5 @@
 import sys
+import os
 import argparse
 from datetime import datetime
 
@@ -9,10 +10,13 @@ from kfp.registry import RegistryClient
 TIMESTAMP = datetime.now().strftime("%Y%m%d%H%M%S")
 
 BUCKET = "mlops-workshop"
-ENVIRONMENT = "dev"
+ENVIRONMENT = "devi"
 PIPELINE_REPO = "https://us-central1-kfp.pkg.dev/gsd-ai-mx-ferneutron/mlops"
 PIPELINE_NAME = f"beans-{ENVIRONMENT}-{TIMESTAMP}"
 PIPELINE_ROOT = f"{BUCKET}/{ENVIRONMENT}/{TIMESTAMP}/pipeline_root"
+
+MYENV = os.getenv("MYENV")
+print(f"Content of MYENV: {MYENV}")
 
 sys.path.append("vertex-pipelines/")
 
@@ -53,13 +57,13 @@ def pipeline(
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
-        description="Compile and run your Python code.",
+        description="Compile and run your",
     )
 
     parser.add_argument(
         "--compile",
         action="store_true",
-        help="Compile pipeline.",
+        help="Compile",
     )
 
     parser.add_argument(
