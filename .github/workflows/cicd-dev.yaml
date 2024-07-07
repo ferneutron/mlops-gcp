@@ -43,9 +43,9 @@ jobs:
         id: vertex-pipeline
         with:
             list-files: shell
-            filters: |
-              python:
-                - added|modified: '*.py'
+            backend:
+              - 'vertex-pipelines/pipelines/beans/**'
+              - '!**/*.py'
 
       - name: Show modified
         if: ${{ steps.vertex-pipeline.outputs.python == 'true' }}
