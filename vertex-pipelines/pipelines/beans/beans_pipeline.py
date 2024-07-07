@@ -10,7 +10,7 @@ from kfp.registry import RegistryClient
 TIMESTAMP = datetime.now().strftime("%Y%m%d%H%M%S")
 
 BUCKET = "mlops-workshop"
-ENVIRONMENT = "dev"
+ENVIRONMENT = "devi"
 PIPELINE_REPO = "https://us-central1-kfp.pkg.dev/gsd-ai-mx-ferneutron/mlops"
 PIPELINE_NAME = f"beans-{ENVIRONMENT}-{TIMESTAMP}"
 PIPELINE_ROOT = f"{BUCKET}/{ENVIRONMENT}/{TIMESTAMP}/pipeline_root"
