@@ -42,24 +42,11 @@ jobs:
         uses: dorny/paths-filter@v3
         id: vertex-pipeline
         with:
+            list-files: shell
             filters: |
-                beans:
-                  - 'vertex-pipelines/pipelines/beans/'
-                houses:
-                  - 'vertex-pipelines/pipelines/houses/'
+              python:
+                - added|modified: '*.py'
 
-      - name: 'Compile Pipeline: Beans'
-        if: steps.vertex-pipeline.outputs.beans == 'true'
-        env:
-          MYENV: 'THIS IS MY ENV'
-        run: |
-          pip install --upgrade pip
-          pip install -r vertex-pipelines/requirements.txt
-          python3 -B vertex-pipelines/pipelines/beans/beans_pipeline.py --compile
-
-      - name: 'Compile Pipeline: Houses'
-        if: steps.vertex-pipeline.outputs.houses == 'true'
-        run: |
-          pip install --upgrade pip
-          pip install -r vertex-pipelines/requirements.txt
-          python3 -B vertex-pipelines/pipelines/houses/houses_pipeline.py --compile
+      - name: Show modified
+        if: ${{ steps.vertex-pipeline.outputs.python == 'true' }}
+        run: echo "${{ steps.filter.outputs.markdown_files }}"
