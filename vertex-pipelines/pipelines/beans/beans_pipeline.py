@@ -57,7 +57,7 @@ def pipeline(
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
-        description="Compile and run your Python code.",
+        description="Compile and run your Python",
     )
 
     parser.add_argument(
