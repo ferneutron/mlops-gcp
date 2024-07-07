@@ -44,11 +44,9 @@ jobs:
         uses: dorny/paths-filter@v3
         id: vertex-pipeline
         with:
-            list-files: shell
             python:
-              - 'vertex-pipelines/**'
               - '!**/*.py'
 
       - name: Show modified
         if: ${{ steps.vertex-pipeline.outputs.python == 'true' }}
-        run: echo "${{ steps.filter.outputs.markdown_files }}"
+        run: echo "it was true"
