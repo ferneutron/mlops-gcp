@@ -40,13 +40,32 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 'Check Vertex Pipelines'
-        uses: dorny/paths-filter@v3
-        id: vertex-pipeline
+      - name: 'Check Vertex Pipeline: Beans'
+        uses: dorny/paths-filter@v2.2.1
+        id: vertex-pipeline-beans
         with:
-            python:
-              - '!**/*.py'
+            filters: |
+                src:
+                  - 'vertex-pipelines/pipelines/beans/**'
 
-      - name: Show modified
-        if: ${{ steps.vertex-pipeline.outputs.python == 'true' }}
-        run: echo "it was true"
+      - name: 'Check Vertex Pipelin: Houses'
+        uses: dorny/paths-filter@v2.2.1
+        id: vertex-pipeline-houses
+        with:
+            filters: |
+                src:
+                  - 'vertex-pipelines/pipelines/houses/**'
+
+      - name: 'Compile Pipeline: Beans'
+        if: steps.vertex-pipeline-beans.outputs.src == 'true'
+        run: |
+          pip install --upgrade pip
+          pip install -r vertex-pipelines/requirements.txt
+          python3 -B vertex-pipelines/pipelines/beans/beans_pipeline.py --compile
+
+      - name: 'Compile Pipeline: Houses'
+        if: steps.vertex-pipeline-houses.outputs.src == 'true'
+        run: |
+          pip install --upgrade pip
+          pip install -r vertex-pipelines/requirements.txt
+          python3 -B vertex-pipelines/pipelines/houses/houses_pipeline.py --compile
