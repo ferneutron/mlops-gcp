@@ -16,6 +16,7 @@ PIPELINE_ROOT = f"{BUCKET}/{ENVIRONMENT}/{TIMESTAMP}/pipeline_root"
 
 sys.path.append("vertex-pipelines/")
 
+
 @kfp.dsl.pipeline(name=PIPELINE_NAME, pipeline_root=PIPELINE_ROOT)
 def pipeline(
     project_id: str,
@@ -27,7 +28,9 @@ def pipeline(
     from components.utils.custom_split import split_data
     from components.models.logistic_regression import logistic_regression
 
-    TabularDatasetCreateOp = GData.create_tabular_dataset.component.tabular_dataset_create
+    TabularDatasetCreateOp = (
+        GData.create_tabular_dataset.component.tabular_dataset_create
+    )
 
     dataset_create_op = TabularDatasetCreateOp(
         project=project_id,
@@ -73,7 +76,8 @@ if __name__ == "__main__":
                 pipeline_func=pipeline,
                 package_path="/workspace/pipeline.yaml",
             )
-        except:
+        except Exception as e:
+            print(e)
             compiler.Compiler().compile(
                 pipeline_func=pipeline,
                 package_path="pipeline.yaml",
