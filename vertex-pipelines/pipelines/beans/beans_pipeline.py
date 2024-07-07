@@ -1,18 +1,10 @@
-from __future__ import annotations
-
-import argparse
 import sys
+import argparse
 from datetime import datetime
 
 import kfp
-from components.evaluators.dumb_eval import dumb_eval
-from components.models.logistic_regression import logistic_regression
-from components.utils.custom_split import split_data
-from components.utils.dumb_deploy_model import dumb_deploy_model
 from kfp import compiler
 from kfp.registry import RegistryClient
-sys.path.append("pipelines/")
-
 
 TIMESTAMP = datetime.now().strftime("%Y%m%d%H%M%S")
 
@@ -22,21 +14,25 @@ PIPELINE_REPO = "https://us-central1-kfp.pkg.dev/gsd-ai-mx-ferneutron/mlops"
 PIPELINE_NAME = f"beans-{ENVIRONMENT}-{TIMESTAMP}"
 PIPELINE_ROOT = f"{BUCKET}/{ENVIRONMENT}/{TIMESTAMP}/pipeline_root"
 
+sys.path.append("vertex-pipelines/")
 
-@kfp.dsl.pipeline(PIPELINE_NAME, pipeline_root=PIPELINE_ROOT)
+@kfp.dsl.pipeline(name=PIPELINE_NAME, pipeline_root=PIPELINE_ROOT)
 def pipeline(
-    bq_source: str,
     project_id: str,
     location: str,
+    bq_source: str,
+    dataset_name: str,
 ):
-    import google_cloud_pipeline_components.v1.dataset as DataSet
+    import google_cloud_pipeline_components.v1.dataset as GData
+    from components.utils.custom_split import split_data
+    from components.models.logistic_regression import logistic_regression
 
-    TabularDatasetCreateOp = DataSet.create_tabular_dataset.component
+    TabularDatasetCreateOp = GData.create_tabular_dataset.component.tabular_dataset_create
 
     dataset_create_op = TabularDatasetCreateOp(
         project=project_id,
         location=location,
-        display_name="dataset-name",
+        display_name=dataset_name,
         bq_source=bq_source,
     )
 
@@ -46,27 +42,13 @@ def pipeline(
         dataset=dataset_create_op.outputs["dataset"],
     )
 
-    logistic_training_op = logistic_regression(
-        project_id=project_id,
-        location=location,
+    logistic_regression(
         train_dataset=data.outputs["train_dataset"],
     )
 
-    dumb_eval_op = dumb_eval(
-        project_id=project_id,
-        location=location,
-        test_dataset=data.outputs["test_dataset"],
-        logistic_trained_model=logistic_training_op.outputs["output_model"],
-    )
 
-    dumb_deploy_model(
-        project_id=project_id,
-        location=location,
-        model=dumb_eval_op.outputs["output_model"],
-    )
+if __name__ == "__main__":
 
-
-def init_parser():
     parser = argparse.ArgumentParser(
         description="Compile and run your Python code.",
     )
@@ -83,17 +65,19 @@ def init_parser():
         help="Register pipeline to Artifact Registry.",
     )
 
-    return parser.parse_args()
-
-
-if __name__ == "__main__":
-    args = init_parser()
+    args = parser.parse_args()
 
     if args.compile:
-        compiler.Compiler().compile(
-            pipeline_func=pipeline,
-            package_path="/workspace/pipeline.yaml",
-        )
+        try:
+            compiler.Compiler().compile(
+                pipeline_func=pipeline,
+                package_path="/workspace/pipeline.yaml",
+            )
+        except:
+            compiler.Compiler().compile(
+                pipeline_func=pipeline,
+                package_path="pipeline.yaml",
+            )
 
     elif args.register:
         client = RegistryClient(host=PIPELINE_REPO)
@@ -101,6 +85,6 @@ if __name__ == "__main__":
             file_name="/workspace/pipeline.yaml",
             tags=["latest"],
             extra_headers={
-                "description": "This is an example pipeline template.",
+                "description": "Description",
             },
         )
