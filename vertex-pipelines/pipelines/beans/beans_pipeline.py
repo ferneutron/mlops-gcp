@@ -69,7 +69,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--register",
         action="store_true",
-        help="Register pipeline to Artifact.",
+        help="Register pipeline to ",
     )
 
     args = parser.parse_args()
