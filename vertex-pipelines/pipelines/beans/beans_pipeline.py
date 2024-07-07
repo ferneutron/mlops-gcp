@@ -63,7 +63,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--compile",
         action="store_true",
-        help="Compile pipeline.",
+        help="Compile",
     )
 
     parser.add_argument(
