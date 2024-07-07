@@ -12,6 +12,9 @@ permissions:
   statuses: write
   id-token: write
 
+env:
+  MYENV: "this the content of my env"
+
 jobs:
   ci:
     name: Check code quality
