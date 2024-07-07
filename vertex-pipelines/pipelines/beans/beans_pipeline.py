@@ -8,8 +8,6 @@ from kfp import compiler
 from kfp.registry import RegistryClient
 
 sys.path.append("vertex-pipelines/")
-from components.utils.custom_split import split_data
-from components.models.logistic_regression import logistic_regression
 
 
 logging.basicConfig(
@@ -37,7 +35,10 @@ def pipeline(
 ):
     import google_cloud_pipeline_components.v1.dataset as DataSet
 
-    TabularDatasetCreateOp = DataSet.create_tabular_dataset.component
+    from components.utils.custom_split import split_data
+    from components.models.logistic_regression import logistic_regression
+
+    TabularDatasetCreateOp = DataSet.create_tabular_dataset.component.tabular_dataset_create
 
     dataset_create_op = TabularDatasetCreateOp(
         project=project_id,
