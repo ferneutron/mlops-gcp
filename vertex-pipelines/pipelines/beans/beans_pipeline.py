@@ -83,10 +83,9 @@ if __name__ == "__main__":
     args = init_parser()
 
     if args.compile:
-
         compiler.Compiler().compile(
             pipeline_func=pipeline,
-            package_path="pipeline.yaml",
+            package_path="pipe.yaml",
         )
 
     elif args.register:

@@ -1,0 +1,69 @@
+name: CICD Dev
+
+on:
+  push:
+    branches: [ develop ]
+
+permissions:
+  contents: read
+  packages: read
+  statuses: write
+  id-token: write
+
+jobs:
+  ci:
+    name: Check code quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Super-linter
+        uses: super-linter/super-linter@v6.6.0
+        env:
+          VALIDATE_PYTHON: true
+          VALIDATE_PYTHON_BLACK: true
+          VALIDATE_PYTHON_FLAKE8: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  test:
+    needs: [ci]
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 'Check Vertex Pipeline: Beans'
+        uses: dorny/paths-filter@v2.2.1
+        id: vertex-pipeline-beans
+        with:
+            filters: |
+                src:
+                  - 'vertex-pipelines/pipelines/beans/**'
+
+      - name: 'Check Vertex Pipelin: Houses'
+        uses: dorny/paths-filter@v2.2.1
+        id: vertex-pipeline-houses
+        with:
+            filters: |
+                src:
+                  - 'vertex-pipelines/pipelines/houses/**'
+
+      - name: 'Compile Pipeline: Beans'
+        if: steps.vertex-pipeline-beans.outputs.src == 'true'
+        run: |
+          pip install --upgrade pip
+          pip install -r vertex-pipelines/requirements.txt
+          python3 -B vertex-pipelines/pipelines/beans/beans_pipeline.py --compile
+
+      - name: 'Compile Pipeline: Houses'
+        if: steps.vertex-pipeline-houses.outputs.src == 'true'
+        run: |
+          pip install --upgrade pip
+          pip install -r vertex-pipelines/requirements.txt
+          python3 -B vertex-pipelines/pipelines/houses/houses_pipeline.py --compile
