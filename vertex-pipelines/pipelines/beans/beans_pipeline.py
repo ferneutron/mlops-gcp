@@ -86,7 +86,7 @@ if __name__ == "__main__":
 
         compiler.Compiler().compile(
             pipeline_func=pipeline,
-            package_path="/workspace/pipeline.yaml",
+            package_path="pipeline.yaml",
         )
 
     elif args.register:
