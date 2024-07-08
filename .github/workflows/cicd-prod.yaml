@@ -74,6 +74,7 @@ jobs:
           pip install --upgrade pip
           pip install -r vertex-pipelines/requirements.txt
           python3 -B vertex-pipelines/pipelines/houses/houses_pipeline.py --compile
+
   cd:
     needs: [ci, test]
     name: Deployment
