@@ -109,4 +109,4 @@ jobs:
 
       - name: 'Compile Pipeline: Houses'
         if: steps.vertex-pipeline-houses.outputs.src == 'true'
-        un: gcloud builds submit . --config=cloud-build/vertex-pipeline.yaml
+        run: gcloud builds submit . --config=cloud-build/vertex-pipeline.yaml
