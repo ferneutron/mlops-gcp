@@ -1,6 +1,8 @@
 name: CICD Dev
 
 on:
+  push:
+    branches: [ develop ]
   pull_request:
     branches: [ develop ]
 
@@ -9,6 +11,11 @@ permissions:
   packages: read
   statuses: write
   id-token: write
+
+env:
+  BUCKET: ${{ secrets.BUCKET }}
+  ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+  PIPELINE_REPO: ${{ secrets.PIPELINE_REPO }}
 
 jobs:
   ci:

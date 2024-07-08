@@ -69,7 +69,6 @@ jobs:
           pip install --upgrade pip
           pip install -r vertex-pipelines/requirements.txt
           python3 -B vertex-pipelines/pipelines/houses/houses_pipeline.py --compile
-
   cd:
     needs: [ci, test]
     name: Deployment
@@ -109,4 +108,4 @@ jobs:
 
       - name: 'Compile Pipeline: Houses'
         if: steps.vertex-pipeline-houses.outputs.src == 'true'
-        un: gcloud builds submit . --config=cloud-build/vertex-pipeline.yaml
+        run: gcloud builds submit . --config=cloud-build/vertex-pipeline.yaml
