@@ -78,7 +78,6 @@ if __name__ == "__main__":
             package_path=f"{PACKAGE_PATH}/pipeline.yaml",
         )
 
-
     elif args.register:
         client = RegistryClient(host=PIPELINE_REPO)
         templateName, versionName = client.upload_pipeline(
