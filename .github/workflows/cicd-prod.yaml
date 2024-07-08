@@ -12,6 +12,11 @@ permissions:
   statuses: write
   id-token: write
 
+env:
+  BUCKET: ${{ secrets.BUCKET }}
+  ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+  PIPELINE_REPO: ${{ secrets.PIPELINE_REPO }}
+
 jobs:
   ci:
     name: Check code quality
