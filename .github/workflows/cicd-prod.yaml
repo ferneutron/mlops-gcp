@@ -19,6 +19,7 @@ env:
 
 jobs:
   ci:
+    permissions: write-all
     name: Check code quality
     runs-on: ubuntu-latest
     steps:
@@ -38,6 +39,7 @@ jobs:
   test:
     needs: [ci]
     name: Integration Tests
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -77,6 +79,7 @@ jobs:
 
   cd:
     needs: [ci, test]
+    permissions: write-all
     name: Deployment
     runs-on: ubuntu-latest
     steps:
