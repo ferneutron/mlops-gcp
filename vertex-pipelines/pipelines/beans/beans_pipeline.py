@@ -84,6 +84,6 @@ if __name__ == "__main__":
             file_name=f"{PACKAGE_PATH}/pipeline.yaml",
             tags=["latest"],
             extra_headers={
-                "description": "Description for the beans pipeline",
+                "description": "Must set by definition",
             },
         )
