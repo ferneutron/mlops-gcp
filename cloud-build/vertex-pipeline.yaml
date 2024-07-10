@@ -10,6 +10,7 @@ steps:
   script: |
     #!/usr/bin/env bash
     echo $BUCKET
+    echo $ENVIRONMENT
 
 options:
   automapSubstitutions: true
