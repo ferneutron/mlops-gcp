@@ -16,6 +16,11 @@ env:
   BUCKET: ${{ secrets.BUCKET }}
   ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
   PIPELINE_REPO: ${{ secrets.PIPELINE_REPO }}
+  SUBSTITUTIONS: "
+    BUCKET: ${{ secrets.BUCKET }},\
+    ENVIRONMENT: ${{ secrets.ENVIRONMENT }},\
+    PIPELINE_REPO: ${{ secrets.PIPELINE_REPO }}
+  "
 
 jobs:
   ci:
@@ -113,8 +118,8 @@ jobs:
 
       - name: 'Compile Pipeline: Beans'
         if: steps.vertex-pipeline-beans.outputs.src == 'true'
-        run: gcloud builds submit . --config=cloud-build/vertex-pipeline.yaml
+        run: gcloud builds submit . --config=cloud-build/vertex-pipeline.yaml --substitutions $SUBSTITUTIONS
 
       - name: 'Compile Pipeline: Houses'
         if: steps.vertex-pipeline-houses.outputs.src == 'true'
-        run: gcloud builds submit . --config=cloud-build/vertex-pipeline.yaml
+        run: gcloud builds submit . --config=cloud-build/vertex-pipeline.yaml --substitutions $SUBSTITUTIONS
