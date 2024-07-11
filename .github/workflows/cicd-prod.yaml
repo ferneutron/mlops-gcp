@@ -118,7 +118,7 @@ jobs:
 
       - name: 'Compile Pipeline: Beans'
         if: steps.vertex-pipeline-beans.outputs.src == 'true'
-        run: gcloud builds submit . --config cloud-build/vertex-pipeline.yaml --substitutions $SUBSTITUTIONS
+        run: gcloud builds submit . --config cloud-build/vertex-pipeline.yaml --substitutions $SUBSTITUTIONS,_TASK=beans
 
       - name: 'Compile Pipeline: Houses'
         if: steps.vertex-pipeline-houses.outputs.src == 'true'
