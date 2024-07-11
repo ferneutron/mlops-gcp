@@ -7,11 +7,11 @@ import kfp
 from kfp import compiler
 from kfp.registry import RegistryClient
 
-BUCKET = os.getenv("BUCKET")
-ENVIRONMENT = os.getenv("ENVIRONMENT")
+BUCKET = os.getenv("_BUCKET")
+ENVIRONMENT = os.getenv("_ENVIRONMENT")
 TIMESTAMP = datetime.now().strftime("%Y%m%d%H%M%S")
 
-PIPELINE_REPO = os.getenv("PIPELINE_REPO")
+PIPELINE_REPO = os.getenv("_PIPELINE_REPO")
 PIPELINE_NAME = f"beans-{ENVIRONMENT}-{TIMESTAMP}"
 PIPELINE_ROOT = f"{BUCKET}/{ENVIRONMENT}/{TIMESTAMP}/pipeline_root"
 PACKAGE_PATH = "." if ENVIRONMENT == "dev" else "/workspace"
