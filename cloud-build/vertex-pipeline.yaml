@@ -3,9 +3,9 @@ steps:
 - id: "VerifyPipeline"
   name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:475.0.0'
   env:
-    - BUCKET=$BUCKET
-    - ENVIRONMENT=$ENVIRONMENT
-    - PIPELINE_REPO=$PIPELINE_REPO
+    - 'BUCKET=$BUCKET'
+    - 'ENVIRONMENT=$ENVIRONMENT'
+    - 'PIPELINE_REPO=$PIPELINE_REPO'
 
   script: |
     #!/usr/bin/env bash
