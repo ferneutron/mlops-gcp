@@ -36,7 +36,7 @@ This Cloud Function triggers a Kubeflow Pipeline run using a pipeline template s
 ## Example Request Body
 
 ```json
-request_body={
+{
     "config_values": {
         "project_id": "gsd-ai-mx-ferneutron",
         "location": "us-central1",
@@ -62,4 +62,5 @@ request_body={
 ## References
 
 [Use](https://cloud.google.com/vertex-ai/docs/pipelines/create-pipeline-template#use-the-template-in-kfp-client) Pipeline template.
+
 [Deploy](https://cloud.google.com/functions/docs/create-deploy-gcloud#deploying_the_function) Cloud Function.
