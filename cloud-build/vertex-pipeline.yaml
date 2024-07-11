@@ -9,7 +9,7 @@ steps:
 
   script: |
     #!/usr/bin/env bash
-    echo $BUCKET
+    echo $_BUCKET
 
 options:
   automapSubstitutions: true
