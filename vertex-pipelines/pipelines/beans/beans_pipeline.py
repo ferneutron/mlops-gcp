@@ -67,7 +67,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--register",
         action="store_true",
-        help="Register pipelin ",
+        help="Register pipeline",
     )
 
     args = parser.parse_args()
@@ -84,6 +84,6 @@ if __name__ == "__main__":
             file_name=f"{PACKAGE_PATH}/pipeline.yaml",
             tags=["latest"],
             extra_headers={
-                "description": "Must set by definition",
+                "description": "Must set by definition. Comment to test changes. TEST7.",
             },
         )
