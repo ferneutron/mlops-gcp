@@ -2,9 +2,14 @@ steps:
 
 - id: "VerifyPipeline"
   name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:475.0.0'
+  env:
+    - BUCKET=$BUCKET
+    - ENVIRONMENT=$ENVIRONMENT
+    - PIPELINE_REPO=$PIPELINE_REPO
+
   script: |
     #!/usr/bin/env bash
-    ls -l /workspace
+    echo $BUCKET
 
 options:
   automapSubstitutions: true
