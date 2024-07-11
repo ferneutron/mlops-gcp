@@ -71,7 +71,7 @@ def run_beans_pipeline(request):
     except NotFound as e:
         if "template path not found" in str(e).lower():  # Case-insensitive check
             print(
-                f"Error: Pipeline template not found at '{pipeline_root}/{pipeline_tag}'. Please double-check the path.",
+                f"Error: Pipeline template '{pipeline_root}/{pipeline_tag}' not found. Please double-check the path.",
             )
         else:
             print(f"An unexpected NotFound error occurred: {e}")
