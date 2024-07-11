@@ -19,16 +19,15 @@ def run_beans_pipeline(request):
         request_json = request.form.to_dict()
 
     # Validate required parameters
-    required_params = ['config_params', 'parameter_values']
+    required_params = ['config_values', 'parameter_values']
     for param in required_params:
         if param not in request_json:
             return f"Missing required parameter: {param}", 400
 
-    config_values = parameter_values['config_values']
-    parameter_values = parameter_values['parameter_values']
+    config_values = request_json['config_values']
+    parameter_values = request_json['parameter_values']
 
     try:
-
         project_id = config_values['project_id']
         location = config_values['location']
         staging_bucket=config_values['staging_bucket']
@@ -45,7 +44,7 @@ def run_beans_pipeline(request):
 
     # Get pipeline definition from Registry
     general_values ={key: config_values[key] for key in ['project_id', 'location']}
-    parameter_values = parameter_values['parameter_values'] | general_values
+    parameter_values = parameter_values | general_values
 
     try:
         aiplatform.init(
@@ -59,10 +58,13 @@ def run_beans_pipeline(request):
             parameter_values= parameter_values,
         )
         # If the pipeline job is created successfully, you can start it here
-        job.submit(
-            service_account=service_account,
+        print(
+            job.submit(
+                service_account=service_account,
+            ),
         )
-        print("Pipeline job submitted successfully.")
+        print(f"Pipeline job {job.display_name} submitted successfully.")
+
 
     except NotFound as e:
         if "template path not found" in str(e).lower():  # Case-insensitive check
@@ -72,4 +74,4 @@ def run_beans_pipeline(request):
     except Exception as e:  # Catch any other potential errors
         print(f"An error occurred while creating the pipeline job: {e}")
 
-    return str(job.state)
+    return f"{job.display_name} submitted successfully. Job State {job.state}", 200
