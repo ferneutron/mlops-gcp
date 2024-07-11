@@ -18,7 +18,7 @@ env:
   _PIPELINE_REPO: ${{ secrets.PIPELINE_REPO }}
   SUBSTITUTIONS: "
     _BUCKET=${{ secrets.BUCKET }},\
-    _ENVIRONMENT=${{ secrets.ENVIRONMENT }},\
+    _ENVIRONMENT=prod,\
     _PIPELINE_REPO=${{ secrets.PIPELINE_REPO }}
   "
 
