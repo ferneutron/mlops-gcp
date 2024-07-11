@@ -17,9 +17,9 @@ env:
   ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
   PIPELINE_REPO: ${{ secrets.PIPELINE_REPO }}
   SUBSTITUTIONS: "
-    BUCKET=MyBucket,\
-    ENVIRONMENT=MyEnv,\
-    PIPELINE_REPO=MyPipe
+    _BUCKET=MyBucket,\
+    -ENVIRONMENT=MyEnv,\
+    -PIPELINE_REPO=MyPipe
   "
 
 jobs:
