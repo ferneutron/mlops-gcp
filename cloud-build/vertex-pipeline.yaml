@@ -1,6 +1,6 @@
 steps:
 
-- id: "VerifyPipeline"
+- id: "Compile-Pipeline"
   name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:475.0.0'
   env:
     - '_BUCKET=$_BUCKET'
@@ -9,7 +9,22 @@ steps:
 
   script: |
     #!/usr/bin/env bash
-    echo $_BUCKET
+    pip install --upgrade pip
+    pip install -r vertex-pipelines/requirements.txt
+    python3 -B vertex-pipelines/pipelines/beans/beans_pipeline.py --compile
+
+- id: "Register-Pipeline"
+  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:475.0.0'
+  env:
+    - '_BUCKET=$_BUCKET'
+    - '_ENVIRONMENT=$_ENVIRONMENT'
+    - '_PIPELINE_REPO=$_PIPELINE_REPO'
+
+  script: |
+    #!/usr/bin/env bash
+    pip install --upgrade pip
+    pip install -r vertex-pipelines/requirements.txt
+    python3 -B vertex-pipelines/pipelines/beans/beans_pipeline.py --register
 
 options:
   automapSubstitutions: true
