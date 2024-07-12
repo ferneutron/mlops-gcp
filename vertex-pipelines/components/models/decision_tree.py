@@ -19,6 +19,7 @@ def decision_tree(
     train_dataset: Input[Dataset],
     metrics: Output[Metrics],
     output_model: Output[Model],
+    output_pred:Output[Dataset]
 ):
     import joblib
     import pandas as pd
