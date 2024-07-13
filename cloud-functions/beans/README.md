@@ -30,7 +30,8 @@ This Cloud Function triggers a Kubeflow Pipeline run using a pipeline template s
     --source=. \
     --entry-point=run_beans_pipeline \
     --trigger-http \
-    --memory=512
+    --memory=512 \
+    --timeout=180
 ```
 
 ## Example Request Body
