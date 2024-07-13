@@ -118,4 +118,3 @@ def run_beans_pipeline(request):
     
     res_message["jobName"] = job.display_name
     return res_message
-
