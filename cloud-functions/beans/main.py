@@ -21,7 +21,7 @@ def run_beans_pipeline(request):
         Response object using `make_response`
         <https://flask.palletsprojects.com/en/1.1.x/api/#flask.make_response>.
     """
-    res_message={
+    res_message = {
         "statusCode": 400,
         "pipelineStatus": "FAILED",
         "message": "",
@@ -66,19 +66,19 @@ def run_beans_pipeline(request):
 
     try:
         aiplatform.init(
-            project=project_id,
-            location=location,
-            staging_bucket=staging_bucket,
+            project = project_id,
+            location = location,
+            staging_bucket = staging_bucket,
         )
         job = aiplatform.PipelineJob(
-            display_name=pipeline_display_name,
-            template_path=f"{pipeline_root}/{pipeline_tag}",
-            parameter_values=parameter_values,
+            display_name = pipeline_display_name,
+            template_path = f"{pipeline_root}/{pipeline_tag}",
+            parameter_values = parameter_values,
         )
         # If the pipeline job is created successfully, you can start it here
         print(
             job.submit(
-                service_account=service_account,
+                service_account = service_account,
             )
         )
         print(f"Pipeline job {job.display_name} submitted successfully.")
@@ -103,7 +103,9 @@ def run_beans_pipeline(request):
     while job.state not in [RUNNING, FAILED]:
         attempt += 1
         if attempt > MAX_ATTEMPS_STATUS:
-            res_message["message"]=f"Pipeline with '{job.state}' did not run within the time limit."
+            res_message["message"] = (
+                f"Pipeline with '{job.state}' did not run within the time limit."
+            )
         time.sleep(WAIT_INTERVAL_SECONDS)
 
     if job.state == RUNNING:
