@@ -116,5 +116,6 @@ def run_beans_pipeline(request):
         res_message["pipelineStatus"] = "FAILED"
         res_message["message"] = f"Pipeline job {job.display_name} failed."
 
-    res_message["jobName"] = job.display_name    
+    res_message["jobName"] = job.display_name
+    
     return res_message
