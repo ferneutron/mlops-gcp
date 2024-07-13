@@ -6,8 +6,8 @@ from google.api_core.exceptions import NotFound
 
 MAX_ATTEMPS_STATUS = 6  # Wait for approximately 2 min
 WAIT_INTERVAL_SECONDS = 20  # 20 seconds between attempts
-RUNNING=aiplatform.gapic.PipelineState.PIPELINE_STATE_RUNNING
-FAILED=aiplatform.gapic.PipelineState.PIPELINE_STATE_FAILED
+RUNNING = aiplatform.gapic.PipelineState.PIPELINE_STATE_RUNNING
+FAILED = aiplatform.gapic.PipelineState.PIPELINE_STATE_FAILED
 
 
 @functions_framework.http
@@ -22,10 +22,10 @@ def run_beans_pipeline(request):
         <https://flask.palletsprojects.com/en/1.1.x/api/#flask.make_response>.
     """
     res_message={
-                "statusCode": 400,
-                "pipelineStatus": "FAILED",
-                "message": "",
-                "jobName": None,
+        "statusCode": 400,
+        "pipelineStatus": "FAILED",
+        "message": "",
+        "jobName": None,
     }
 
     # Get the input parameters from the request
@@ -37,7 +37,7 @@ def run_beans_pipeline(request):
     required_params = ["config_values", "parameter_values"]
     for param in required_params:
         if param not in request_json:
-            res_message["message"]=f"Missing required parameters: {param}",
+            res_message["message"] = f"Missing required parameters: {param}"
             return res_message
 
     config_values = request_json["config_values"]
@@ -54,7 +54,7 @@ def run_beans_pipeline(request):
         pipeline_tag = config_values["pipeline_tag"]
     except KeyError as e:
         # Handle the missing parameter error
-        res_message["message"]=f"Missing required parameter: {e}"
+        res_message["message"] = f"Missing required parameter: {e}"
 
     pipeline_root = (
         f"https://{location}-kfp.pkg.dev/{project_id}/{pipeline_repo}/{pipeline_name}"
@@ -79,19 +79,22 @@ def run_beans_pipeline(request):
         print(
             job.submit(
                 service_account=service_account,
-            ),
+            )
         )
         print(f"Pipeline job {job.display_name} submitted successfully.")
 
     except NotFound as e:
         if "template path not found" in str(e).lower():  # Case-insensitive check
-            res_message["message"]= \
+            res_message["message"] = (
                 f"Error: Pipeline template' {pipeline_root}/{pipeline_tag}'. Please double-check the path."
+            )
         else:
-            res_message["message"]=f"An unexpected NotFound error occurred: {e}"
+            res_message["message"] = f"An unexpected NotFound error occurred: {e}"
         return res_message
     except Exception as e:  # Catch any other potential errors
-        res_message["message"]=f"An error occurred while creating the pipeline job: {e}"
+        res_message["message"] = (
+            f"An error occurred while creating the pipeline job: {e}"
+        )
         return res_message
 
 
@@ -104,11 +107,11 @@ def run_beans_pipeline(request):
         time.sleep(WAIT_INTERVAL_SECONDS)
 
     if job.state == RUNNING:
-        res_message["statusCode"]= 200
+        res_message["statusCode"] = 200
         res_message["pipelineStatus"] = "RUNNING"
         res_message["message"] = f"Pipeline job {job.display_name} is running."
     elif job.state == FAILED:
-        res_message["statusCode"]= 400
+        res_message["statusCode"] = 400
         res_message["pipelineStatus"] = "FAILED"
         res_message["message"] = f"Pipeline job {job.display_name} failed."
 
