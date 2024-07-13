@@ -66,19 +66,19 @@ def run_beans_pipeline(request):
 
     try:
         aiplatform.init(
-            project = project_id,
-            location = location,
-            staging_bucket = staging_bucket,
+            project=project_id,
+            location=location,
+            staging_bucket=staging_bucket,
         )
         job = aiplatform.PipelineJob(
-            display_name = pipeline_display_name,
-            template_path = f"{pipeline_root}/{pipeline_tag}",
-            parameter_values = parameter_values,
+            display_name=pipeline_display_name,
+            template_path=f"{pipeline_root}/{pipeline_tag}",
+            parameter_values=parameter_values,
         )
         # If the pipeline job is created successfully, you can start it here
         print(
             job.submit(
-                service_account = service_account,
+                service_account=service_account,
             )
         )
         print(f"Pipeline job {job.display_name} submitted successfully.")
@@ -96,7 +96,6 @@ def run_beans_pipeline(request):
             f"An error occurred while creating the pipeline job: {e}"
         )
         return res_message
-
 
     # Wait for Running or Failed status before finalizing
     attempt = 0
@@ -118,5 +117,5 @@ def run_beans_pipeline(request):
         res_message["message"] = f"Pipeline job {job.display_name} failed."
 
     res_message["jobName"] = job.display_name
-
+    
     return res_message
