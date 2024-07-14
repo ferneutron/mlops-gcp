@@ -137,8 +137,8 @@ jobs:
 
       - name: 'Submit Cloud Function: Beans'
         if: steps.cloud-function-beans.outputs.src == 'true'
-        run: gcloud builds submit . --config cloud-build/cloud-function.yaml --substitutions _PIPELINE=beans,_LOCATION=us-central1
+        run: gcloud beta builds submit . --config cloud-build/cloud-function.yaml --substitutions _PIPELINE=beans,_LOCATION=us-central1
 
       - name: 'Submit Cloud Function: Houses'
         if: steps.cloud-function-houses.outputs.src == 'true'
-        run: gcloud builds submit . --config cloud-build/cloud-function.yaml --substitutions _PIPELINE=houses,_LOCATION=us-central1
+        run: gcloud beta builds submit . --config cloud-build/cloud-function.yaml --substitutions _PIPELINE=houses,_LOCATION=us-central1
