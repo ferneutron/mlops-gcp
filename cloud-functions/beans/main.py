@@ -40,6 +40,7 @@ def run_beans_pipeline(request):
             res_message["message"] = f"Missing required parameters: {param}"
             return res_message
 
+    # Comment for testing the pipeline v1
     config_values = request_json["config_values"]
     parameter_values = request_json["parameter_values"]
 
@@ -79,7 +80,7 @@ def run_beans_pipeline(request):
         print(
             job.submit(
                 service_account=service_account,
-            )
+            ),
         )
         print(f"Pipeline job {job.display_name} submitted successfully.")
 
