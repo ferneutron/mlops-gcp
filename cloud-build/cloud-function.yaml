@@ -1,8 +1,20 @@
 steps:
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:475.0.0'
+  env:
+    - '_PIPELINE=$_PIPELINE'
+
   script: |
     #!/usr/bin/env bash
     echo "Cloud Function"
+    gcloud functions deploy test-cf-pipeline \
+        --gen2 \
+        --runtime=python312 \
+        --region=us-central1 \
+        --source=cloud-functions/${_PIPELINE} \
+        --entry-point=run_${_PIPELINE}_pipeline \
+        --trigger-http \
+        --memory=512 \
+        --timeout=180
 
 options:
   automapSubstitutions: true
