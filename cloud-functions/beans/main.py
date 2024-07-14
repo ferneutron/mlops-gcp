@@ -40,7 +40,7 @@ def run_beans_pipeline(request):
             res_message["message"] = f"Missing required parameters: {param}"
             return res_message
 
-    # Comment for testing the pipeline v7
+    # Comment for testing the pipeline v8
     config_values = request_json["config_values"]
     parameter_values = request_json["parameter_values"]
 
