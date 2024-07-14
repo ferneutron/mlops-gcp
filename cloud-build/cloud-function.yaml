@@ -16,6 +16,7 @@ steps:
         --trigger-http \
         --memory=512 \
         --timeout=300
+        --service-account=workshop@gsd-ai-mx-ferneutron.iam.gserviceaccount.com
 
 options:
   automapSubstitutions: true
