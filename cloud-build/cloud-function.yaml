@@ -9,14 +9,15 @@ steps:
     #!/usr/bin/env bash
     gcloud functions deploy cf-${_PIPELINE} \
         --gen2 \
-        --runtime=python312 \
-        --region=${_LOCATION} \
-        --source=cloud-functions/${_PIPELINE} \
-        --entry-point=run_${_PIPELINE}_pipeline \
+        --runtime python312 \
+        --region ${_LOCATION} \
+        --source cloud-functions/${_PIPELINE} \
+        --entry-point run_${_PIPELINE}_pipeline \
         --trigger-http \
-        --memory=512 \
-        --timeout=300
-        --service-account="workshop@gsd-ai-mx-ferneutron.iam.gserviceaccount.com"
+        --memory 512 \
+        --timeout 300 \
+        --service-account workshop@gsd-ai-mx-ferneutron.iam.gserviceaccount.com \
+        --build-service-account=projects/gsd-ai-mx-ferneutron/serviceAccounts/workshop@gsd-ai-mx-ferneutron.iam.gserviceaccount.com
 
 options:
   automapSubstitutions: true
