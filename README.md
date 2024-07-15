@@ -2,7 +2,7 @@
 
 The purpose of this repository is to demonstrate the operation, collaboration, management, and functionality of components and services in a Machine Learning Operations (MLOps) ecosystem with Google Cloud Platform services.
 
-Furthermore, this repository is intended to be used as a foundational framework for any type of organization that seeks to implement MLOps best practices under the Google Cloud ecosystem or any organization motivated to move to the next level of MLOps maturity [[1](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)].
+Furthermore, this repository is intended to be used as a foundational framework for any type of organization that seeks to implement MLOps best practices under the Google Cloud ecosystem or any organization motivated to move to the next level of MLOps maturity [[ 1 ](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)].
 
 1. [How to understand this repository?](#1-how-to-understand-this-repository)
 2. [Repository organization](#2-repository-organization)
@@ -31,13 +31,13 @@ This repository follows a service-based structure, the objective of which is to 
 
 Contains the elements of **Vertex Pipelines** organized by `components` and `pipelines`.
 
-`components` are organized by `evaluators`, `models` and `utils`  (If required, more categories can be added, for example: `explainability` ).
+`components` are organized by `evaluators`, `models` and `utils`  (if required, more categories can be added, for example: `explainability` ).
 
 `pipelines` are organized by *projects*, this repository contains two example *projects*: `beans` and `houses` .
 
 The interaction between `components` and `pipelines` should be understood as:
 
-> "a pipeline is defined under a specific project where such pipeline is built based on components defined in components”
+> *"a pipeline is defined under a specific project where such pipeline is built based on components defined in components”*
 >
 
 ### 2.2 cloud-functions
