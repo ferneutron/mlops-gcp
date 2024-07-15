@@ -1,5 +1,8 @@
 # MLOps on GCP
 
+![Prod CI/CD](https://github.com/ferneutron/mlops-gcp/actions/workflows/cicd-prod.yaml/badge.svg)
+
+
 The purpose of this repository is to demonstrate the operation, collaboration, management, and functionality of components and services in a Machine Learning Operations (MLOps) ecosystem with Google Cloud Platform services.
 
 Furthermore, this repository is intended to be used as a foundational framework for any type of organization that seeks to implement MLOps best practices under the Google Cloud ecosystem or any organization motivated to move to the next level of MLOps maturity [[ 1 ](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)].
