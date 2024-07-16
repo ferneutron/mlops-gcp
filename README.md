@@ -27,7 +27,7 @@ Furthermore, this repository is intended to be used as a foundational framework 
 
 In progress (almost ready)
 
-![workflow](img/collaboration-flow.png)
+![workflow](img/collaboration-flow.jpg)
 
 ## 2. Repository organization
 
