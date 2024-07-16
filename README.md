@@ -25,7 +25,7 @@ Furthermore, this repository is intended to be used as a foundational framework 
 
 ## 1. How to understand this repository?
 
-In progress
+In progress (almost ready)
 
 ## 2. Repository organization
 
