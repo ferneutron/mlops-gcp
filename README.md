@@ -27,6 +27,8 @@ Furthermore, this repository is intended to be used as a foundational framework 
 
 In progress (almost ready)
 
+![workflow](img/collaboration-flow.png)
+
 ## 2. Repository organization
 
 This repository follows a service-based structure, the objective of which is to manage in an organized way the elements that contribute to the service.
