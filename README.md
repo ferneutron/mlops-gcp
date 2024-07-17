@@ -25,9 +25,13 @@ Furthermore, this repository is intended to be used as a foundational framework 
 
 ## 1. How to understand this repository?
 
-In progress (almost ready)
+This repository implements (for now) 3 operational flows of integration, development and continuous deployment. In the following image we can see a representation of each of these flows and the components involved.
 
 ![workflow](img/collaboration-flow.jpg)
+
+The Github Actions components are intended to carry out continuous integration as part of the deployment. On the other hand, Cloud Build components have the purpose of validating, registering and deploying Google Cloud components.
+
+We believe that this base template framework is replicable as a starting point for integration of components and services for the scalability of MLOps in various organizations.
 
 ## 2. Repository organization
 
@@ -35,22 +39,22 @@ This repository follows a service-based structure, the objective of which is to 
 
 ### 2.1 vertex-pipelines
 
-Contains the elements of **Vertex Pipelines** organized by `components` and `pipelines`.
+The purpose of the `vertex-pipelines` directory is to organize **Vertex Pipelines** elements by:
 
-`components` are organized by `evaluators`, `models` and `utils`  (if required, more categories can be added, for example: `explainability` ).
-
-`pipelines` are organized by *projects*, this repository contains two example *projects*: `beans` and `houses` .
+- `components`: organized by `evaluators`, `models` and `utils`  (if required, more categories can be added, for example: `explainability`).
+- `pipelines`: organized by *projects*, this repository contains two example *projects*: `beans` and `houses` .
 
 The interaction between `components` and `pipelines` should be understood as:
 
-> *"a pipeline is defined under a specific project where such pipeline is built based on components defined in components”*
+> *"A pipeline is defined under a specific project where such pipeline is built based on components defined in components”*
 >
 
 ### 2.2 cloud-functions
 
-The purpose of the `cloud-functions` directory is to manage functions that will serve as **triggers** or **callers** of `vertex-pipelines`.
+The purpose of the `cloud-functions` directory is to manage functions that will serve as **triggers** or **callers** of **Vertex Pipelines**.
 
-Cloud Functions are organized by *project*. Each *project* might be linked to a `pipeline` defined in `vertex-pipelines` .  However, the Cloud Functions defined under  `cloud-functions` are not required to be tied to a specific `pipeline` in `vertex-pipelines`.
+- Cloud Functions are organized by *project*.
+- Each *project* might be linked to a `pipeline` defined in `vertex-pipelines`. However, the Cloud Functions defined under  `cloud-functions` are not required to be tied to a specific `pipeline` in `vertex-pipelines`.
 
 In this repository, we have two Cloud Functions, `beans` and `houses` that serve as callers of the pipelines `beans_pipeline.py` and `houses_pipeline.py` respectively.
 
