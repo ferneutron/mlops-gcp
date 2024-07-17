@@ -43,7 +43,7 @@ The second flow describes the process of updating some element within the `cloud
 
 The third flow describes the flow to update Github Actions CI/CD flows such as the verification, registration, and deployment flows defined in Cloud Build. The following image shows the representation of the flow for updating the YAML files.
 
-![workflow](img/third-flow.jpg)
+![workflow](img/thrid-flow.jpg)
 
 ## 2. Repository organization
 
