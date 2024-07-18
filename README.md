@@ -4,6 +4,7 @@
 ![Dev CI/CD](https://github.com/ferneutron/mlops-gcp/actions/workflows/cicd-dev.yaml/badge.svg)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
+![mlops](img/mlops.jpg)
 
 The purpose of this repository is to demonstrate the operation, collaboration, management, and functionality of components and services in a Machine Learning Operations (MLOps) ecosystem with Google Cloud Platform services.
 
