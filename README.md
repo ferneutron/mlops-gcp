@@ -10,17 +10,20 @@ Furthermore, this repository is intended to be used as a foundational framework 
 
 We believe that this base template framework is replicable as a starting point for integration of components and services for the scalability of MLOps in various organizations.
 
-1. 🧠 [How to understand this repository?](#1-how-to-understand-this-repository)
-2. 🌀 [Repository organization](#2-repository-organization)
-    1. [vertex-pipelines](#21-vertex-pipelines)
-    2. [cloud-functions](#22-cloud-functions)
-    3. [cloud-build](#23-cloud-build)
-    4. [.github/workflows](#24-githubworkflows)
-3. 🚀 [Contributions](#3-contributions)
+1. [How to understand this repository?](#1-how-to-understand-this-repository)
+    - 1.1 [Vertex Pipelines](#11-vertex-pipelines)
+    - 1.2 [Cloud Functions](#12-cloud-functions)
+    - 1.3 [Cloud Build & Github Actions](#13-cloud-build--github-actions)
+3. [Repository organization](#2-repository-organization)
+    - 2.1 [vertex-pipelines](#21-vertex-pipelines)
+    - 2.2 [cloud-functions](#22-cloud-functions)
+    - 2.3 [cloud-build](#23-cloud-build)
+    - 2.4 [.github/workflows](#24-githubworkflows)
+3. [Contributions](#3-contributions)
 
-4. References
+4. [References](#4-references)
 
-## 1. 🧠 How to understand this repository?
+## 1. How to understand this repository?
 
 This repository implements (for now) 3 operational flows of integration, development and continuous deployment. In the following image we can see a representation of each of these flows and the components involved.
 
@@ -28,19 +31,23 @@ This repository implements (for now) 3 operational flows of integration, develop
 
 The Github Actions components are intended to carry out continuous integration as part of the deployment. On the other hand, Cloud Build components have the purpose of validating, registering and deploying Google Cloud components.
 
+### 1.1 Vertex Pipelines
 The first flow describes the process of updating `pipelines` and `components` within `vertex-pipelines`. When a collaborator submits a change, one of the Github Actions flows detects that the change has been within the `vertex-pipelines` directory and consequently triggers the flow corresponding to updating the component and registering the pipeline. The following figure represents the update flow of vertex-pipelines.
 
 ![workflow](img/first-flow.jpg)
 
+### 1.2 Cloud Functions
 The second flow describes the process of updating some element within the `cloud-functions` directory. When a collaborator submits a change, Github Actions detects if the change has occurred in `cloud-functions` and consequently triggers the flow corresponding to the registration and deployment of a Cloud Function. The following figure represents the mentioned flow.
 
 ![workflow](img/second-flow.jpg)
+
+### 1.3 Cloud Build & Github Actions
 
 The third flow describes the flow to update Github Actions CI/CD flows such as the verification, registration, and deployment flows defined in Cloud Build. The following image shows the representation of the flow for updating the YAML files.
 
 ![workflow](img/thrid-flow.jpg)
 
-## 2. 🌀 Repository organization
+## 2. Repository organization
 
 This repository follows a service-based structure, the objective of which is to manage in an organized way the elements that contribute to the service.
 
@@ -75,7 +82,7 @@ In this repository, everything under the `vertex-pipelines/` directory is consid
 
 Github Actions. This directory contains the definition for the Github Actions flow. In this case, two flows have been defined: `cicd-dev.yaml` and `cicd-prod.yaml`.
 
-## 3. 🚀 Contributions
+## 3. Contributions
 
 Let's grow this MLOps framework together.
 
