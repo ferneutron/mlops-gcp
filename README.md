@@ -33,19 +33,20 @@ This repository implements (for now) 3 operational flows of integration, develop
 
 The Github Actions components are intended to carry out continuous integration as part of the deployment. On the other hand, Cloud Build components have the purpose of validating, registering and deploying Google Cloud components.
 
-### 1.1 Vertex Pipelines
-The first flow describes the process of updating `pipelines` and `components` within `vertex-pipelines`. When a collaborator submits a change, one of the Github Actions flows detects that the change has been within the `vertex-pipelines` directory and consequently triggers the flow corresponding to updating the component and registering the pipeline. The following figure represents the update flow of vertex-pipelines.
+### 1.1 Vertex Pipelines 
+
+The first flow describes the process of updating `pipelines` and `components` within `vertex-pipelines` [[ 2 ](https://cloud.google.com/vertex-ai/docs/pipelines/introduction)]. When a collaborator submits a change, one of the Github Actions flows detects that the change has been within the `vertex-pipelines` directory and consequently triggers the flow corresponding to updating the component and registering the pipeline. The following figure represents the update flow of vertex-pipelines.
 
 ![workflow](img/first-flow.jpg)
 
 ### 1.2 Cloud Functions
-The second flow describes the process of updating some element within the `cloud-functions` directory. When a collaborator submits a change, Github Actions detects if the change has occurred in `cloud-functions` and consequently triggers the flow corresponding to the registration and deployment of a Cloud Function. The following figure represents the mentioned flow.
+The second flow describes the process of updating some element within the `cloud-functions` [[ 3 ](https://cloud.google.com/functions/docs)] directory. When a collaborator submits a change, Github Actions detects if the change has occurred in `cloud-functions` and consequently triggers the flow corresponding to the registration and deployment of a Cloud Function. The following figure represents the mentioned flow.
 
 ![workflow](img/second-flow.jpg)
 
 ### 1.3 Cloud Build & Github Actions
 
-The third flow describes the flow to update Github Actions CI/CD flows such as the verification, registration, and deployment flows defined in Cloud Build. The following image shows the representation of the flow for updating the YAML files.
+The third flow describes the flow to update Github Actions [[ 4 ](https://docs.github.com/en/actions)] CI/CD flows such as the verification, registration, and deployment flows defined in Cloud Build [[ 5 ](https://cloud.google.com/build/docs/overview)]. The following image shows the representation of the flow for updating the YAML files.
 
 ![workflow](img/thrid-flow.jpg)
 
@@ -95,10 +96,14 @@ The steps to create your first contribution are:
   - What is the bug to be solved? (In case of bugs)
 
 - 2️⃣ Make a `Pull Request` to `develop`
-  - Set @ferneutron or @ulises as the reviewers
+  - Set `@ferneutron` or `@ulises-code` as the reviewers
 
 - 3️⃣ Let's work together to make your PR merged!
 
 ## 4. References
 
 - [ 1 ] [**MLOps: Continuous delivery and automation pipelines in machine learning**](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)
+- [ 2 ] [**Introduction to Vertex AI Pipelines**](https://cloud.google.com/vertex-ai/docs/pipelines/introduction)]
+- [ 3 ] [**Cloud Functions Documentation**](https://cloud.google.com/functions/docs)
+- [ 4 ] [**GitHub Actions Documentation**](https://docs.github.com/en/actions)
+- [ 5 ] [**Overview of Cloud Build**](https://cloud.google.com/build/docs/overview)
