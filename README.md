@@ -10,22 +10,17 @@ Furthermore, this repository is intended to be used as a foundational framework 
 
 We believe that this base template framework is replicable as a starting point for integration of components and services for the scalability of MLOps in various organizations.
 
-1. [How to understand this repository?](#1-how-to-understand-this-repository)
-2. [Repository organization](#2-repository-organization)
+1. 🧠 [How to understand this repository?](#1-how-to-understand-this-repository)
+2. 🌀 [Repository organization](#2-repository-organization)
     1. [vertex-pipelines](#21-vertex-pipelines)
     2. [cloud-functions](#22-cloud-functions)
     3. [cloud-build](#23-cloud-build)
     4. [.github/workflows](#24-githubworkflows)
-3. Adding a Vertex Pipeline Component
-4. Adding a Cloud Function
-5. Contributions
-    1. (Video) how to clone the repo
-    2. (Video) how to add a task
-    3. (Video) how to submit your first PR
-6. References
-7. Scope
+3. 🚀 [Contributions](#3-contributions)
 
-## 1. How to understand this repository?
+4. References
+
+## 1. 🧠 How to understand this repository?
 
 This repository implements (for now) 3 operational flows of integration, development and continuous deployment. In the following image we can see a representation of each of these flows and the components involved.
 
@@ -45,7 +40,7 @@ The third flow describes the flow to update Github Actions CI/CD flows such as t
 
 ![workflow](img/thrid-flow.jpg)
 
-## 2. Repository organization
+## 2. 🌀 Repository organization
 
 This repository follows a service-based structure, the objective of which is to manage in an organized way the elements that contribute to the service.
 
@@ -80,12 +75,21 @@ In this repository, everything under the `vertex-pipelines/` directory is consid
 
 Github Actions. This directory contains the definition for the Github Actions flow. In this case, two flows have been defined: `cicd-dev.yaml` and `cicd-prod.yaml`.
 
-## 3. How to add a Vertex Pipeline
+## 3. 🚀 Contributions
 
-## 4. How to add a Cloud Function
+Let's grow this MLOps framework together.
 
-## 4. Contributions
+The steps to create your first contribution are:
 
-## 5. References
+- 1️⃣ Create an issue where you explain:
+  - What is the objective of the feature? (In case of adding a new feature)
+  - What is the bug to be solved? (In case of bugs)
+
+- 2️⃣ Make a `Pull Request` to `develop`
+  - Set @ferneutron or @ulises as the reviewers
+
+- 3️⃣ Let's work together to make your PR merged!
+
+## 4. References
 
 - [ 1 ] [**MLOps: Continuous delivery and automation pipelines in machine learning**](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)
