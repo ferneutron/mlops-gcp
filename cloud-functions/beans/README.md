@@ -50,13 +50,8 @@ This Cloud Function triggers a Kubeflow Pipeline run using a pipeline template s
     } ,
     "parameter_values" : {
         "bq_source": "bq://gsd-ai-mx-ferneutron.beans.beans1",
-        "DATASET_DISPLAY_NAME": "MyDatasetName",
-        "MACHINE_TYPE": "n1-standard-4",
-        "TRAINING_DISPLAY_NAME": "MyTrainingName",
-        "auc_threshold": 0.9,
-        "thresholds_dict_str": "{'auRoc': 0.95}",
-        "MODEL_DISPLAY_NAME": "MyModelName",
-        "ENDPOINT_DISPLAY_NAME": "MyEndpointName"
+        "dataset_name": "MyDatasetName",
+        "email_addresses": ["dummmy1@mail.com", "dummmy2@mail.com"]
     }
 }
 ```
