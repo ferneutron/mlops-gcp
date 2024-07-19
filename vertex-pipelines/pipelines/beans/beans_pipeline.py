@@ -53,7 +53,7 @@ def pipeline(
 
         logistic_regression(
             train_dataset=data.outputs["train_dataset"],
-    )
+        )
 
 
 if __name__ == "__main__":
