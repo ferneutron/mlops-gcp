@@ -6,7 +6,9 @@ from datetime import datetime
 import kfp
 from kfp import compiler, dsl
 from kfp.registry import RegistryClient
-from google_cloud_pipeline_components.v1.vertex_notification_email import VertexNotificationEmailOp
+from google_cloud_pipeline_components.v1.vertex_notification_email import (
+    VertexNotificationEmailOp,
+)
 
 BUCKET = os.getenv("_BUCKET")
 ENVIRONMENT = os.getenv("_ENVIRONMENT")
