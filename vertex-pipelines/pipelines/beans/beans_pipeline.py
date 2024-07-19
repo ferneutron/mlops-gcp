@@ -28,7 +28,7 @@ def pipeline(
     location: str,
     bq_source: str,
     dataset_name: str,
-    email_addresses: list[str],
+    email_addresses: list,
 ):
     import google_cloud_pipeline_components.v1.dataset as GData
     from components.utils.custom_split import split_data
