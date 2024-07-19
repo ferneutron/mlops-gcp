@@ -63,6 +63,8 @@ def run_beans_pipeline(request):
 
     # Get pipeline definition from Registry
     general_values = {key: config_values[key] for key in ["project_id", "location"]}
+    if not parameter_values["email_addresses"]:
+        parameter_values["email_addresses"] = ["dummy@example.com"]
     parameter_values = parameter_values | general_values
 
     try:
