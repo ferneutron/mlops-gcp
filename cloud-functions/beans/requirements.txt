@@ -1,1 +1,6 @@
 functions-framework==3.*
+google-api-core
+google-cloud-aiplatform
+google-cloud-bigquery
+google-cloud-storage
+kfp

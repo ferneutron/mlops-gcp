@@ -103,7 +103,7 @@ jobs:
                 src:
                   - 'vertex-pipelines/pipelines/beans/**'
 
-      - name: 'Check Vertex Pipelin: Houses'
+      - name: 'Check Vertex Pipeline: Houses'
         uses: dorny/paths-filter@v2.2.1
         id: vertex-pipeline-houses
         with:
@@ -111,10 +111,34 @@ jobs:
                 src:
                   - 'vertex-pipelines/pipelines/houses/**'
 
-      - name: 'Compile Pipeline: Beans'
+      - name: 'Check Cloud Function: Beans'
+        uses: dorny/paths-filter@v2.2.1
+        id: cloud-function-beans
+        with:
+            filters: |
+                src:
+                  - 'cloud-functions/beans/**'
+
+      - name: 'Check Cloud Function: Houses'
+        uses: dorny/paths-filter@v2.2.1
+        id: cloud-function-houses
+        with:
+            filters: |
+                src:
+                  - 'cloud-functions/houses/**'
+
+      - name: 'Submit Vertex Pipeline: Houses'
+        if: steps.vertex-pipeline-houses.outputs.src == 'true'
+        run: gcloud builds submit . --config cloud-build/vertex-pipeline.yaml --substitutions _BUCKET=${{ secrets.BUCKET }},_ENVIRONMENT=prod,_PIPELINE_REPO=${{ secrets.PIPELINE_REPO }},_PIPELINE=houses
+
+      - name: 'Submit Vertex: Beans'
         if: steps.vertex-pipeline-beans.outputs.src == 'true'
         run: gcloud builds submit . --config cloud-build/vertex-pipeline.yaml --substitutions _BUCKET=${{ secrets.BUCKET }},_ENVIRONMENT=prod,_PIPELINE_REPO=${{ secrets.PIPELINE_REPO }},_PIPELINE=beans
 
-      - name: 'Compile Pipeline: Houses'
-        if: steps.vertex-pipeline-houses.outputs.src == 'true'
-        run: gcloud builds submit . --config cloud-build/vertex-pipeline.yaml --substitutions _BUCKET=${{ secrets.BUCKET }},_ENVIRONMENT=prod,_PIPELINE_REPO=${{ secrets.PIPELINE_REPO }},_PIPELINE=houses
+      - name: 'Submit Cloud Function: Beans'
+        if: steps.cloud-function-beans.outputs.src == 'true'
+        run: gcloud beta builds submit . --config cloud-build/cloud-function.yaml --substitutions _PIPELINE=beans,_LOCATION=us-central1
+
+      - name: 'Submit Cloud Function: Houses'
+        if: steps.cloud-function-houses.outputs.src == 'true'
+        run: gcloud beta builds submit . --config cloud-build/cloud-function.yaml --substitutions _PIPELINE=houses,_LOCATION=us-central1
