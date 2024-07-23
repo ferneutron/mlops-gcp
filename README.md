@@ -4,7 +4,7 @@
 ![Dev CI/CD](https://github.com/ferneutron/mlops-gcp/actions/workflows/cicd-dev.yaml/badge.svg)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
-![mlops](img/mlops.jpg)
+![mlops](docs/img/mlops.jpg)
 
 The purpose of this repository is to demonstrate the operation, collaboration, management, and functionality of components and services in a Machine Learning Operations (MLOps) ecosystem with Google Cloud Platform services.
 
@@ -29,26 +29,26 @@ We believe that this base template framework is replicable as a starting point f
 
 This repository implements (for now) 3 operational flows of integration, development and continuous deployment. In the following image we can see a representation of each of these flows and the components involved.
 
-![workflow](img/full-flow.jpg)
+![workflow](docs/img/full-flow.jpg)
 
 The Github Actions components are intended to carry out continuous integration as part of the deployment. On the other hand, Cloud Build components have the purpose of validating, registering and deploying Google Cloud components.
 
-### 1.1 Vertex Pipelines 
+### 1.1 Vertex Pipelines
 
 The first flow describes the process of updating `pipelines` and `components` within `vertex-pipelines` [[ 2 ](https://cloud.google.com/vertex-ai/docs/pipelines/introduction)]. When a collaborator submits a change, one of the Github Actions flows detects that the change has been within the `vertex-pipelines` directory and consequently triggers the flow corresponding to updating the component and registering the pipeline. The following figure represents the update flow of vertex-pipelines.
 
-![workflow](img/first-flow.jpg)
+![workflow](docs/img/first-flow.jpg)
 
 ### 1.2 Cloud Functions
 The second flow describes the process of updating some element within the `cloud-functions` [[ 3 ](https://cloud.google.com/functions/docs)] directory. When a collaborator submits a change, Github Actions detects if the change has occurred in `cloud-functions` and consequently triggers the flow corresponding to the registration and deployment of a Cloud Function. The following figure represents the mentioned flow.
 
-![workflow](img/second-flow.jpg)
+![workflow](docs/img/second-flow.jpg)
 
 ### 1.3 Cloud Build & Github Actions
 
 The third flow describes the flow to update Github Actions [[ 4 ](https://docs.github.com/en/actions)] CI/CD flows such as the verification, registration, and deployment flows defined in Cloud Build [[ 5 ](https://cloud.google.com/build/docs/overview)]. The following image shows the representation of the flow for updating the YAML files.
 
-![workflow](img/thrid-flow.jpg)
+![workflow](docs/img/thrid-flow.jpg)
 
 ## 2. Repository organization
 
