@@ -20,7 +20,7 @@ resource "google_compute_instance" "terraform-instance" {
     network_interface {
         network = "default"
         access_config {
-            //empty for now
+            //empty
         }
     }
 }
