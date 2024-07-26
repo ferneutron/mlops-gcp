@@ -146,7 +146,7 @@ venv.bak/
 dmypy.json
 
 # gcp credentials
-credentials.json
+key.json
 
 # Pyre type checker
 .pyre/

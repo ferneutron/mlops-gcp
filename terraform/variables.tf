@@ -10,6 +10,11 @@ variable "location" {
     sensitive = true
 }
 
+variable "service_account_key" {
+    description = "service_account_key"
+    sensitive = true
+}
+
 variable "service_account_name" {
     description = "service_account_name"
     type = string
