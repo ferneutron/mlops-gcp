@@ -23,6 +23,7 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+*tfvars
 MANIFEST
 
 # PyInstaller
@@ -143,6 +144,9 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
+# gcp credentials
+credentials.json
 
 # Pyre type checker
 .pyre/
