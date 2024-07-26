@@ -25,4 +25,19 @@ variable "roles_list" {
     description = "roles_list"
     type = list(string)
     sensitive = false
+    default = [
+        "roles/artifactregistry.writer",
+        "roles/bigquery.admin",
+        "roles/bigquery.readSessionUser",
+        "roles/cloudbuild.builds.builder",
+        "roles/cloudbuild.tokenAccessor",
+        "roles/cloudbuild.workerPoolUser",
+        "roles/cloudfunctions.developer",
+        "roles/run.invoker",
+        "roles/logging.logWriter",
+        "roles/iam.serviceAccountUser",
+        "roles/aiplatform.user",
+        "roles/developerconnect.user",
+        "roles/storage.objectCreator"
+    ]
 }
