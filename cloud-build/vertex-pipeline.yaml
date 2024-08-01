@@ -40,6 +40,7 @@ steps:
     #!/usr/bin/env bash
     pip install --upgrade pip
     pip install -r vertex-pipelines/requirements.txt
+    echo $_PIPELINE_REPO
     python3 -B vertex-pipelines/pipelines/${_PIPELINE}/${_PIPELINE}_pipeline.py --register
 
 options:
