@@ -107,3 +107,5 @@ The steps to create your first contribution are:
 - [ 3 ] [**Cloud Functions Documentation**](https://cloud.google.com/functions/docs)
 - [ 4 ] [**GitHub Actions Documentation**](https://docs.github.com/en/actions)
 - [ 5 ] [**Overview of Cloud Build**](https://cloud.google.com/build/docs/overview)
+
+Happy coding!
